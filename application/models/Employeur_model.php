@@ -28,6 +28,21 @@ class Employeur_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    // get data by email
+    function get_by_email($email)
+    {
+        $this->db->order_by($this->id, $this->order);
+        $this->db->where('emailEmployeur',$email);
+        return $this->db->get($this->table)->result();
+    }
+    // get data by pseudo
+    function get_by_pseudo($pseudo)
+    {
+        $this->db->order_by($this->id, $this->order);
+        $this->db->where('pseudo',$pseudo);
+        return $this->db->get($this->table)->result();
+    }
     
     // get total rows
     function total_rows($q = NULL) {
