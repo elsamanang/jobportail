@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<h1><?php echo $title;?></h1>
     <?php if(isset($this->session->message)) echo $this->session->message;?>
 	<div id="body">
-        <?php echo form_open('demandeur/create_action','class ="form-horizontal form-label-left"');?>
+        <?php echo form_open('formation/create_action','class ="form-horizontal form-label-left"');?>
             <div class="form-group">
                 <label for="varchar">NomFormation <?php echo form_error('nomFormation') ?></label>
                 <input type="text" class="form-control" name="nomFormation" id="nomFormation" placeholder="NomFormation"/>
@@ -82,11 +82,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <div class="form-group">
                 <label for="year">DateDebutFormation <?php echo form_error('dateDebutFormation') ?></label>
-                <input type="text" class="form-control" name="dateDebutFormation" id="dateDebutFormation" placeholder="DateDebutFormation"/>
+                <input type="year" class="form-control" name="dateDebutFormation" id="dateDebutFormation" placeholder="DateDebutFormation"/>
             </div>
             <div class="form-group">
                 <label for="year">DateFinFormation <?php echo form_error('dateFinFormation') ?></label>
-                <input type="text" class="form-control" name="dateFinFormation" id="dateFinFormation" placeholder="DateFinFormation"/>
+                <input type="year" class="form-control" name="dateFinFormation" id="dateFinFormation" placeholder="DateFinFormation"/>
             </div>
             <div class="form-group">
                 <label for="varchar">DiplomeFormation <?php echo form_error('diplomeFormation') ?></label>
