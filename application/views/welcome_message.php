@@ -76,6 +76,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<li><a href="#">Login</a></li>
 				<li><a href="<?php echo base_url('demandeur/create')?>">Inscription Demandeur</a></li>
 				<li><a href="<?php echo base_url('employeur/create')?>">Inscription Employeur</a></li>
+				<li><a href="<?php echo base_url('competences/create')?>">Ajout Competences</a></li>
+				<li><a href="<?php echo base_url('emplois/create')?>">Ajout Emplois</a></li>
+				<li><a href="<?php echo base_url('formation/create')?>">Ajout Formation</a></li>
+				<li><a href="<?php echo base_url('offre/create')?>">Ajout Offre</a></li>
+				<li><a href="<?php echo base_url('offredemande/create')?>">Ajout Offredemande</a></li>
+				<li><a href="<?php echo base_url('realisation/create')?>">Ajout Realisation</a></li>
 				<li><a href="<?php echo base_url('demandeur/index')?>">Liste Demandeur</a></li>
 				<li><a href="<?php echo base_url('employeur/index')?>">Liste Employeur</a></li>
 			</ul>
