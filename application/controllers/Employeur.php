@@ -52,35 +52,83 @@ class Employeur extends CI_Controller
         } else {
             $pwd = $this->input->post('pwd');
             $pwdconf = $this->input->post('pwdconf');
-            if ($pwd == $pwdconf){
-                $data = array(
-                    'nomEmployeur' => $this->input->post('nomEmployeur',TRUE),
-                    'adresseEmployeur' => $this->input->post('adresseEmployeur',TRUE),
-                    'emailEmployeur' => $this->input->post('emailEmployeur',TRUE),
-                    'telephoneEmployeur' => $this->input->post('telephoneEmployeur',TRUE),
-                    'siteEmployeur' => $this->input->post('siteEmployeur',TRUE),
-                    'codePostal' => $this->input->post('codePostal',TRUE),
-                    'fax' => $this->input->post('fax',TRUE),
-                    'logo' => $this->input->post('imageProfile',TRUE),
-                    'pseudo' => $this->input->post('pseudo',TRUE),
-                    'pwd' => sha1($this->input->post('pwd',TRUE))
-                );
-                try{
-                    $this->employeur_model->insert($data);
-                    $this->session->set_flashdata('message', '<p style="color:green;">Create Record Success</p?>');
+            $email = $this->input->post('emailEmployeur',TRUE);
+            $pseudo = $this->input->post('pseudo',TRUE);
+            $verifEmail = $this->employeur_model->get_by_email($email);
+            $verifPseudo = $this->employeur_model->get_by_pseudo($pseudo);
+            if(empty($verifEmail)){
+                if(empty($verifPseudo)){
+                    if ($pwd == $pwdconf){
+                        if($_FILES['logo']['name'] != '')  
+                            $logo = $this->upload_image();
+                        $data = array(
+                            'nomEmployeur' => $this->input->post('nomEmployeur',TRUE),
+                            'adresseEmployeur' => $this->input->post('adresseEmployeur',TRUE),
+                            'emailEmployeur' => $this->input->post('emailEmployeur',TRUE),
+                            'telephoneEmployeur' => $this->input->post('telephoneEmployeur',TRUE),
+                            'siteEmployeur' => $this->input->post('siteEmployeur',TRUE),
+                            'codePostal' => $this->input->post('codePostal',TRUE),
+                            'fax' => $this->input->post('fax',TRUE),
+                            'logo' => $logo,
+                            'pseudo' => $this->input->post('pseudo',TRUE),
+                            'pwd' => sha1($this->input->post('pwd',TRUE))
+                        );
+                        try{
+                            $this->employeur_model->insert($data);
+                            $this->session->set_flashdata('message', '<p style="color:green;">Create Record Success</p?>');
+                            redirect(site_url('employeur/create'));
+                        }catch (Exception $e){
+                            $this->session->set_flashdata('message', '<p style="color:red;">Create Record Failed >>'.$e.'</p>');
+                            redirect(site_url('employeur/create'));
+                        }
+                    
+                    }else{
+                        $this->session->set_flashdata('message', '<p style="color:red;">Password not much</p>');
+                        redirect(site_url('employeur/create'));
+                    }
+                }else{
+                    $this->session->set_flashdata('message', '<p style="color:red;">Ce Pseudo est deja attribué</p>');
                     redirect(site_url('employeur/create'));
-                }catch (Exception $e){
-                    $this->session->set_flashdata('message', '<p style="color:red;">Create Record Failed >>'.$e.'</p>');
-                    redirect(site_url('employeur/create'));
-                }
-                
+                }   
             }else{
-                $this->session->set_flashdata('message', '<p style="color:red;">Password not much</p>');
+                $this->session->set_flashdata('message', '<p style="color:red;">Cet Email existe deja</p>');
                 redirect(site_url('employeur/create'));
-            }  
+            }     
         } 
     }
 
+    public function upload_image(){
+        if ($_FILES['logo']['size'] <= 10240000){
+
+            $url="/uploads/employeur";
+            $image=basename($_FILES['logo']['name']);
+            $image=str_replace(' ','|',$image);
+            $type=explode(".",$image);
+            $type=$type[count($type)-1];
+
+            if(in_array($type,array('jpg','jpeg','png','JPG','JPEG','PNG')))
+            {
+                $tmppath="uploads/employeur/".$this->input->post('nomEmployeur',TRUE).".".$type;
+                if(is_uploaded_file($_FILES["logo"]["tmp_name"]))
+                {
+                    move_uploaded_file($_FILES['logo']['tmp_name'],$tmppath);
+                    return $tmppath;
+                }
+            }
+            else{
+                
+                $error = '<p style="color:red;">Format invalide, seul les formats: JPEG, PNG sont autorisés</p>';
+                $this->session->set_flashdata('message', $error);
+                redirect(site_url('employeur/create'));  
+            }
+        }
+        else{
+            $error = '<p style="color:red;">Taille invalide, importez un fichier de taille inférieur à 100ko</p>';
+            $this->session->set_flashdata('message', $error);
+            redirect(site_url('employeur/create'));
+        }
+    }
+    
     public function _rules() {
         $this->form_validation->set_rules('nomEmployeur', 'nomemployeur', 'trim|required');
         $this->form_validation->set_rules('adresseEmployeur', 'adresseemployeur', 'trim|required');
