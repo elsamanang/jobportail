@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<h1><?php echo $title;?></h1>
     <?php if(isset($this->session->message)) echo $this->session->message;?>
 	<div id="body">
-        <?php echo form_open('demandeur/create_action','class ="form-horizontal form-label-left"');?>
+        <?php echo form_open('competences/create_action','class ="form-horizontal form-label-left"');?>
             <div class="form-group">
                 <label for="varchar">NomCompetence <?php echo form_error('nomCompetence') ?></label>
                 <input type="text" class="form-control" name="nomCompetence" id="nomCompetence" placeholder="NomCompetence"/>
