@@ -71,18 +71,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<h1><?php echo $title;?></h1>
     <?php if(isset($this->session->message)) echo $this->session->message;?>
 	<div id="body">
-        <?php echo form_open('demandeur/create_action','class ="form-horizontal form-label-left"');?>
+        <?php echo form_open('offre/create_action','class ="form-horizontal form-label-left"');?>
             <div class="form-group">
                 <label for="varchar">PosteOffre <?php echo form_error('posteOffre') ?></label>
                 <input type="text" class="form-control" name="posteOffre" id="posteOffre" placeholder="PosteOffre"/>
             </div>
             <div class="form-group">
                 <label for="date">DateDebutOffre <?php echo form_error('dateDebutOffre') ?></label>
-                <input type="text" class="form-control" name="dateDebutOffre" id="dateDebutOffre" placeholder="DateDebutOffre"/>
+                <input type="date" class="form-control" name="dateDebutOffre" id="dateDebutOffre" placeholder="DateDebutOffre"/>
             </div>
             <div class="form-group">
                 <label for="date">DateFinOffre <?php echo form_error('dateFinOffre') ?></label>
-                <input type="text" class="form-control" name="dateFinOffre" id="dateFinOffre" placeholder="DateFinOffre"/>
+                <input type="date" class="form-control" name="dateFinOffre" id="dateFinOffre" placeholder="DateFinOffre"/>
             </div>
             <div class="form-group">
                 <label for="int">Fk IdEmployeur <?php echo form_error('fk_idEmployeur') ?></label>
