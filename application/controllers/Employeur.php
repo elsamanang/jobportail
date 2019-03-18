@@ -9,6 +9,38 @@ class Employeur extends CI_Controller
         parent::__construct();
     }
 
+    public function index()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'employeur/index.php?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'employeur/index.php?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'employeur/index.php';
+            $config['first_url'] = base_url() . 'employeur/index.php';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->employeur_model->total_rows($q);
+        $employeur = $this->employeur_model->get_limit_data($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
+        $data = array(
+            'employeur_data' => $employeur,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+        );
+        $data['title']= "Liste des Employeurs";
+        $this->load->view('list_employeur', $data);
+    }
+
     public function create(){
         $data['title'] = "Ajout Employeur";
         $this->load->view('ajout_employeur', $data);
