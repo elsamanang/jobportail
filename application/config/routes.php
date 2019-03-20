@@ -56,7 +56,18 @@ $route['log'] = 'welcome/login_action';
 $route['logupPersonne'] = 'demandeur/create_action';
 $route['logupEntreprise'] = 'employeur/create_action';
 $route['inscription'] = 'welcome/inscription';
-$route['profile'] = 'welcome/profile';
+$route['uprofile'] = 'demandeur/profile';
+$route['modif_uprofile/(:any)'] = 'demandeur/update/$1';
+$route['eprofile'] = 'employeur/profile';
+
+$route['list_offre'] = 'offre';
+$route['add_offre'] = 'offre/create';
+$route['addoffre'] = 'offre/create_action';
+$route['addrealisation'] = 'realisation/create_action';
+$route['addcompetences'] = 'competences/create_action';
+$route['addemplois'] = 'emplois/create_action';
+$route['addformation'] = 'formation/create_action';
+
 $route['deconnexion'] = 'welcome/logout';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
