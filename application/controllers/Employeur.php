@@ -48,6 +48,7 @@ class Employeur extends CI_Controller
     public function create_action(){
         $this->_rules();
         if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Remplissez les champs obligatoires</p>');
             redirect('inscription');
         } else {
             $pwd = $this->input->post('pwd');
