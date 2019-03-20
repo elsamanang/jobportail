@@ -25,4 +25,37 @@ class Welcome extends CI_Controller {
 		$this->load->view('welcome_message');
 		$this->load->view('_inc/footer');
 	}
+	
+	public function login()
+	{
+		$data['title']= "connexion";
+		$this->load->view('_inc/header',$data);
+		$this->load->view('login');
+		$this->load->view('_inc/footer');
+	}
+
+	public function login_action(){
+		$this->_rules();
+		if ($this->form_validation->run() == FALSE) {
+            $this->login();
+        }
+		$this->session->set_flashdata('message', '<span>Connexion etablie</span>');
+        redirect(site_url('welcome/login'));
+	}
+
+	public function inscription()
+	{
+		$data['title']= "inscription";
+		$this->load->view('_inc/header',$data);
+		$this->load->view('inscription');
+		$this->load->view('_inc/footer');
+	}
+
+	public function _rules() 
+    {
+        $this->form_validation->set_rules('email', 'Email obligatoire', 'trim|required');
+        $this->form_validation->set_rules('pwd', 'Password Obligatoire', 'trim|required');
+
+        $this->form_validation->set_error_delimiters('<span class="white-text center red" style="color:red;">', '</span>');
+    }
 }
