@@ -1,95 +1,37 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
-
-	<style type="text/css">
-
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body {
-		margin: 0 15px 0 15px;
-	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
-</head>
-<body>
-
-<div id="container">
-	<h1>Welcome to JobPortal!</h1>
-
-	<div id="body">
-		<nav>
-			<ul>
-				<li><a href="#">Login</a></li>
-				<li><a href="<?php echo base_url('demandeur/create')?>">Inscription Demandeur</a></li>
-				<li><a href="<?php echo base_url('employeur/create')?>">Inscription Employeur</a></li>
-				<li><a href="<?php echo base_url('competences/create')?>">Ajout Competences</a></li>
-				<li><a href="<?php echo base_url('emplois/create')?>">Ajout Emplois</a></li>
-				<li><a href="<?php echo base_url('formation/create')?>">Ajout Formation</a></li>
-				<li><a href="<?php echo base_url('offre/create')?>">Ajout Offre</a></li>
-				<li><a href="<?php echo base_url('offredemande/create')?>">Ajout Offredemande</a></li>
-				<li><a href="<?php echo base_url('realisation/create')?>">Ajout Realisation</a></li>
-				<li><a href="<?php echo base_url('demandeur/index')?>">Liste Demandeur</a></li>
-				<li><a href="<?php echo base_url('employeur/index')?>">Liste Employeur</a></li>
-			</ul>
-		</nav>
-	</div>
-
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-</div>
-
-</body>
-</html>
+<div class="row">
+        <div class="col s8 offset-s2">
+            <form action="" class="col s12">
+                <div class="input-field col s10">
+                    <i class="material-icons prefix">search</i>
+                    <input id="icon_search" type="search" class="search">
+                    <label for="icon_search">Chercher</label>
+                </div>
+                <div class="input-field col s2">
+                    <input id="icon_btn" type="submit" class="btn waves-light search" value="Chercher">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+        <div class="col s3">
+            <div class="card sticky-action" style=" width: 250px;">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="<?php echo base_url();?>/assets/img.png" style="height: 250px;">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator blue-grey-text text-darken-4">P-Breakers<i class="material-icons right">more_vert</i></span>
+                    <p><a href="#">www.pbreakers.org</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title blue-grey-text text-darken-4">Offre d'Emploi<i class="material-icons right">close</i></span>
+                    <p><strong class="blue-grey-text">Poste</strong> : Comptable.</p>
+                    <p><strong class="blue-grey-text">Depuis</strong> : 13/03/2019.</p>
+                    <p><strong class="blue-grey-text">Expire</strong> : 13/04/2019.</p>
+                    <div class="card-action">
+                        <a class="waves-effect waves-light btn" href=""><i class="material-icons right">directions_run</i>Postuler</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
