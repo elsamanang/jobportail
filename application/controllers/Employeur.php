@@ -129,6 +129,13 @@ class Employeur extends CI_Controller
             redirect('inscription');
         }
     }
+
+    public function profile(){
+        $data['title']= "profile";
+		$this->load->view('_inc/header',$data);
+		$this->load->view('profile_entreprise');
+		$this->load->view('_inc/footer');
+    }
     
     public function _rules() {
         $this->form_validation->set_rules('nomEmployeur', 'nomemployeur', 'trim|required');
