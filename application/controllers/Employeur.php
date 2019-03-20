@@ -48,7 +48,7 @@ class Employeur extends CI_Controller
     public function create_action(){
         $this->_rules();
         if ($this->form_validation->run() == FALSE) {
-            $this->create();
+            redirect('inscription');
         } else {
             $pwd = $this->input->post('pwd');
             $pwdconf = $this->input->post('pwdconf');
@@ -75,24 +75,24 @@ class Employeur extends CI_Controller
                         );
                         try{
                             $this->employeur_model->insert($data);
-                            $this->session->set_flashdata('message', '<p style="color:green;">Create Record Success</p?>');
-                            redirect(site_url('employeur/create'));
+                            $this->session->set_flashdata('message', '<p style="color:green;"><i class="material-icons">check</i> Create Record Success</p>');
+                            redirect('login');
                         }catch (Exception $e){
-                            $this->session->set_flashdata('message', '<p style="color:red;">Create Record Failed >>'.$e.'</p>');
-                            redirect(site_url('employeur/create'));
+                            $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Create Record Failed >>'.$e.'</p>');
+                            redirect('inscription');
                         }
                     
                     }else{
-                        $this->session->set_flashdata('message', '<p style="color:red;">Password not much</p>');
-                        redirect(site_url('employeur/create'));
+                        $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Password not much</p>');
+                        redirect('inscription');
                     }
                 }else{
-                    $this->session->set_flashdata('message', '<p style="color:red;">Ce Pseudo est deja attribué</p>');
-                    redirect(site_url('employeur/create'));
+                    $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Ce Pseudo est deja attribué</p>');
+                    redirect('inscription');
                 }   
             }else{
-                $this->session->set_flashdata('message', '<p style="color:red;">Cet Email existe deja</p>');
-                redirect(site_url('employeur/create'));
+                $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Cet Email existe deja</p>');
+                redirect('inscription');
             }     
         } 
     }
@@ -117,15 +117,15 @@ class Employeur extends CI_Controller
             }
             else{
                 
-                $error = '<p style="color:red;">Format invalide, seul les formats: JPEG, PNG sont autorisés</p>';
+                $error = '<p style="color:red;"><i class="material-icons">cancel</i> Format invalide, seul les formats: JPEG, PNG sont autorisés</p>';
                 $this->session->set_flashdata('message', $error);
-                redirect(site_url('employeur/create'));  
+                redirect('inscription');  
             }
         }
         else{
-            $error = '<p style="color:red;">Taille invalide, importez un fichier de taille inférieur à 100ko</p>';
+            $error = '<p style="color:red;"><i class="material-icons">cancel</i> Taille invalide, importez un fichier de taille inférieur à 100ko</p>';
             $this->session->set_flashdata('message', $error);
-            redirect(site_url('employeur/create'));
+            redirect('inscription');
         }
     }
     
@@ -140,6 +140,6 @@ class Employeur extends CI_Controller
         $this->form_validation->set_rules('pseudo', 'pseudo', 'trim');
         $this->form_validation->set_rules('pwd', 'pwd', 'trim|required');
         $this->form_validation->set_rules('pwdconf', 'pwdConfirmation', 'trim|required');
-        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+        $this->form_validation->set_error_delimiters('<span class="red-text" style="color:red;">', '</span>');
     }
 }
