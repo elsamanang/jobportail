@@ -14,6 +14,9 @@
         var elems = document.querySelectorAll('select');
         var instances = M.FormSelect.init(elems);
 
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems);
+
         var elems = document.querySelectorAll('.datepicker');
         var options = {
             format: "yyyy-mm-dd"
