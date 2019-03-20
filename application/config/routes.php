@@ -53,5 +53,7 @@ $route['default_controller'] = 'welcome';
 $route['accueil'] = 'welcome';
 $route['login'] = 'welcome/login';
 $route['inscription'] = 'welcome/inscription';
+$route['profile'] = 'welcome/profile';
+$route['deconnexion'] = 'welcome/logout';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
