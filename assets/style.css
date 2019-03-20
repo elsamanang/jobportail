@@ -3,8 +3,17 @@
 }
 #body{
     margin: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
-#title-icon{
+#title-icon {
     position: relative;
-    top: -0.68rem;
+}
+main {
+    flex: 1 0 auto;
+}
+.page-footer{
+    padding-top: 0px;
+
 }
