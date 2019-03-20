@@ -8,8 +8,6 @@ class Offre extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('offre_model');
-        $this->load->library('form_validation');
     }
 
     public function index()
@@ -41,13 +39,17 @@ class Offre extends CI_Controller
             'start' => $start,
         );
         $data['title']= "Liste des Offres";
-        $this->load->view('list_offre', $data);
+        $this->load->view('_inc/header',$data);
+        $this->load->view('list_offre');
+		$this->load->view('_inc/footer');
     }
 
     public function create() 
     {
         $data['title'] = "Ajout Offre";
-        $this->load->view('ajout_offre', $data);
+		$this->load->view('_inc/header',$data);
+		$this->load->view('add_offre');
+		$this->load->view('_inc/footer');
     }
     
     public function create_action() 
