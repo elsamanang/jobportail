@@ -21,5 +21,15 @@
         var instances = M.Datepicker.init(elems, options);
     });
 </script>
+<!-- Pour l'affiche du Toast de message -->
+<script>
+    (function () {
+        <?php if(isset($this->session->message)){?>
+            var msg = '<?php echo $this->session->message?>';
+            M.toast({html: msg});
+        <?php }?>;
+
+    })();
+</script>
 </body>
 </html>
