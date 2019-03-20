@@ -134,6 +134,48 @@ class Demandeur extends CI_Controller
         }
     }
 
+    public function profile(){
+        $data['title']= "profile";
+		$this->load->view('_inc/header',$data);
+		$this->load->view('profile_user');
+		$this->load->view('_inc/footer');
+    }
+
+    public function update($id) 
+    {
+        $row = $this->demandeur_model->get_by_id($id);
+
+        if ($row) {
+            $data['user'] = array(
+                'idDemandeur' => set_value('idDemandeur', $row->idDemandeur),
+                'nomDemandeur' => set_value('nomDemandeur', $row->nomDemandeur),
+                'prenomDemandeur' => set_value('prenomDemandeur', $row->prenomDemandeur),
+                'titre' => set_value('titre', $row->titre),
+                'adresseDemandeur' => set_value('adresseDemandeur', $row->adresseDemandeur),
+                'emailDemandeur' => set_value('emailDemandeur', $row->emailDemandeur),
+                'telephoneDemandeur' => set_value('telephoneDemandeur', $row->telephoneDemandeur),
+                'genre' => set_value('genre', $row->genre),
+                'dateNaissance' => set_value('dateNaissance', $row->dateNaissance),
+                'nationalite' => set_value('nationalite', $row->nationalite),
+                'etatCivil' => set_value('etatCivil', $row->etatCivil),
+                'imageProfile' => set_value('imageProfile', $row->imageProfile),
+                'pseudo' => set_value('pseudo', $row->pseudo),
+                'pwd' => set_value('pwd', $row->pwd),
+                );
+            $data['formations'] = $this->formation_model->get_by_id_user($id);
+            $data['competences'] = $this->competences_model->get_by_id_user($id);
+            $data['realisations'] = $this->realisation_model->get_by_id_user($id);
+            $data['emplois'] = $this->emplois_model->get_by_id_user($id);
+            $data['title'] ='modifier profile';
+            $this->load->view('_inc/header',$data);
+            $this->load->view('modif_uprofile');
+            $this->load->view('_inc/footer');
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect('uprofile');
+        }
+    }
+
     public function _rules() {
         $this->form_validation->set_rules('nomDemandeur', 'nomdemandeur', 'trim|required');
         $this->form_validation->set_rules('prenomDemandeur', 'prenomdemandeur', 'trim|required');
