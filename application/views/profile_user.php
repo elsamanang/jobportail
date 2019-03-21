@@ -4,7 +4,7 @@
         <div class="col s12 m8 offset-m2">
             <div class="card">
                 <div class="card-image">
-                    <img src="assets/img.png">
+                    <img src="<?php echo base_url()?><?php echo $this->session->user->imageProfile?>">
                 </div>
             </div>
             <p><a class="waves-effect waves-light btn" href=""><i class="material-icons right">print</i>Imprimer CV</a></p>

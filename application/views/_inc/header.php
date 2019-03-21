@@ -3,10 +3,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="<?php echo base_url();?>/assets/materialise.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>/assets/font.css">
-    <script src="<?php echo base_url();?>/assets/materialize.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>/assets/style.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/materialise.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/font.css">
+    <script src="<?php echo base_url();?>assets/materialize.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/style.css">
     <title>Job Portal</title>
 </head>
 <body>
