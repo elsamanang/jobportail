@@ -60,6 +60,7 @@ $route['logupEntreprise'] = 'entrerise/employeur/create_action';
 $route['inscription'] = 'welcome/inscription';
 $route['uprofile'] = 'user/demandeur/profile';
 $route['modif_uprofile/(:any)'] = 'user/demandeur/update/$1';
+$route['update_uprofile'] = 'user/demandeur/update_action';
 $route['eprofile'] = 'entrerise/employeur/profile';
 
 $route['list_offre'] = 'entrerise/offre';
