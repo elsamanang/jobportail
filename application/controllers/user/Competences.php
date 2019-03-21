@@ -74,6 +74,25 @@ class Competences extends CI_Controller
         }
     }
 
+    public function update($id) 
+    {
+        $row = $this->competences_model->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'nomCompetence' => set_value('nomCompetence', $row->nomCompetence),
+                'fk_idDemandeur' => set_value('fk_idDemandeur', $row->fk_idDemandeur),
+            );
+            $data['title'] ='modifier competence';
+            $this->load->view('_inc/header',$data);
+            $this->load->view('modif_competence');
+            $this->load->view('_inc/footer');
+        } else {
+            $this->session->set_flashdata('message', '<p style="color:orange;"><i class="material-icons">cancel</i> Record Not Found</p>');
+            redirect('uprofile');
+        }
+    }
+
     public function _rules() 
     {
         $this->form_validation->set_rules('nomCompetence', 'Nom de competence', 'trim|required');

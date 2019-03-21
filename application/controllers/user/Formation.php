@@ -88,8 +88,6 @@ class Formation extends CI_Controller
 
         if ($row) {
             $data = array(
-                'button' => 'Update',
-                'action' => site_url('formation/update_action'),
                 'idFormation' => set_value('idFormation', $row->idFormation),
                 'nomFormation' => set_value('nomFormation', $row->nomFormation),
                 'nomInstitution' => set_value('nomInstitution', $row->nomInstitution),
@@ -99,7 +97,7 @@ class Formation extends CI_Controller
                 'resultatFormation' => set_value('resultatFormation', $row->resultatFormation),
                 'descriptionFormation' => set_value('descriptionFormation', $row->descriptionFormation),
                 'fk_idDemandeur' => set_value('fk_idDemandeur', $row->fk_idDemandeur),
-        );
+            );
             $data['title'] ='modifier formation';
             $this->load->view('_inc/header',$data);
             $this->load->view('modif_formation');

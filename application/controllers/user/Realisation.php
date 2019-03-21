@@ -79,6 +79,29 @@ class Realisation extends CI_Controller
         }
     }
 
+    public function update($id) 
+    {
+        $row = $this->realisation_model->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'idRealisation' => set_value('idRealisation', $row->idRealisation),
+                'nomRealisation' => set_value('nomRealisation', $row->nomRealisation),
+                'dateRealisation' => set_value('dateRealisation', $row->dateRealisation),
+                'lienRealisation' => set_value('lienRealisation', $row->lienRealisation),
+                'descriptionRealisation' => set_value('descriptionRealisation', $row->descriptionRealisation),
+                'fk_idDemandeur' => set_value('fk_idDemandeur', $row->fk_idDemandeur),
+	        );
+            $data['title'] ='modifier realisation';
+            $this->load->view('_inc/header',$data);
+            $this->load->view('modif_realisation');
+            $this->load->view('_inc/footer');
+        } else {
+            $this->session->set_flashdata('message', '<p style="color:orange;"><i class="material-icons">cancel</i> Record Not Found</p>');
+            redirect('uprofile');
+        }
+    }
+
     public function _rules() 
     {
 	$this->form_validation->set_rules('nomRealisation', 'nomrealisation', 'trim|required');

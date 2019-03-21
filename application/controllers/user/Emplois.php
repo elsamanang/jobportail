@@ -79,6 +79,29 @@ class Emplois extends CI_Controller
         }
     }
 
+    public function update($id) 
+    {
+        $row = $this->emplois_model->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'idEmplois' => set_value('idEmplois', $row->idEmplois),
+                'fk_idDemandeur' => set_value('fk_idDemandeur', $row->fk_idDemandeur),
+                'nomEntreprise' => set_value('nomEntreprise', $row->nomEntreprise),
+                'posteEmplois' => set_value('posteEmplois', $row->posteEmplois),
+                'dateDebutEmplois' => set_value('dateDebutEmplois', $row->dateDebutEmplois),
+                'dateFinEmplois' => set_value('dateFinEmplois', $row->dateFinEmplois),
+            );
+            $data['title'] ='modifier emploi';
+            $this->load->view('_inc/header',$data);
+            $this->load->view('modif_emploi');
+            $this->load->view('_inc/footer');
+        } else {
+            $this->session->set_flashdata('message', '<p style="color:orange;"><i class="material-icons">cancel</i> Record Not Found</p>');
+            redirect('uprofile');
+        }
+    }
+
     public function _rules() 
     {
 	$this->form_validation->set_rules('nomEntreprise', 'nomentreprise', 'trim|required');
