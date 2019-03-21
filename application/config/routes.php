@@ -59,7 +59,7 @@ $route['logupPersonne'] = 'user/demandeur/create_action';
 $route['logupEntreprise'] = 'entrerise/employeur/create_action';
 $route['inscription'] = 'welcome/inscription';
 $route['uprofile'] = 'user/demandeur/profile';
-$route['modif_uprofile/(:any)'] = 'demandeur/update/$1';
+$route['modif_uprofile/(:any)'] = 'user/demandeur/update/$1';
 $route['eprofile'] = 'entrerise/employeur/profile';
 
 $route['list_offre'] = 'entrerise/offre';
