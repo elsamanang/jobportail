@@ -34,7 +34,7 @@ class Employeur_model extends CI_Model
     {
         $this->db->order_by($this->id, $this->order);
         $this->db->where('emailEmployeur',$email);
-        return $this->db->get($this->table)->result();
+        return $this->db->get($this->table)->row();
     }
     // get data by pseudo
     function get_by_pseudo($pseudo)
