@@ -136,6 +136,10 @@ class Demandeur extends CI_Controller
 
     public function profile(){
         $data['title']= "profile";
+        $data['formations'] = $this->formation_model->get_by_id_user($this->session->user->idDemandeur);
+        $data['competences'] = $this->competences_model->get_by_id_user($this->session->user->idDemandeur);
+        $data['realisations'] = $this->realisation_model->get_by_id_user($this->session->user->idDemandeur);
+        $data['emplois'] = $this->emplois_model->get_by_id_user($this->session->user->idDemandeur);
 		$this->load->view('_inc/header',$data);
 		$this->load->view('profile_user');
 		$this->load->view('_inc/footer');

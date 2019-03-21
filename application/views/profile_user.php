@@ -14,23 +14,25 @@
         <div class="col s5">
             <h5>Identity</h5>
             <div class="divider"></div>
-            <p class="blue-grey-text">Titre : <span>Ingenieur</span></p>
-            <p class="blue-grey-text">Nom : <span>Shekinah Tshi</span></p>
-            <p class="blue-grey-text">Prenom : <span>ShekMak</span></p>
-            <p class="blue-grey-text">Pseudo : <span>ShekMak</span></p>
-            <p class="blue-grey-text">Adresse : <span>lubumbashi</span></p>
-            <p class="blue-grey-text">Email : <span>shekmak@gmail.com</span></p>
-            <p class="blue-grey-text">Telephone : <span>+243976250495</span></p>
-            <p class="blue-grey-text">Date de Naissance : <span>24/01/2006</span></p>
-            <p class="blue-grey-text">Genre : <span>Masculin</span></p>
-            <p class="blue-grey-text">Nationalite : <span>Zairoise</span></p>
-            <p class="blue-grey-text">Etat civil : <span>Mariee</span></p>
+            <p class="blue-grey-text">Titre : <span><?php echo ucfirst($this->session->user->titre)?></span></p>
+            <p class="blue-grey-text">Nom : <span><?php echo ucfirst($this->session->user->nomDemandeur)?></span></p>
+            <p class="blue-grey-text">Prenom : <span><?php echo ucfirst($this->session->user->prenomDemandeur)?></span></p>
+            <p class="blue-grey-text">Pseudo : <span><?php echo ucfirst($this->session->user->pseudo)?></span></p>
+            <p class="blue-grey-text">Adresse : <span><?php echo ucfirst($this->session->user->adresseDemandeur)?></span></p>
+            <p class="blue-grey-text">Email : <span><?php echo ucfirst($this->session->user->emailDemandeur)?></span></p>
+            <p class="blue-grey-text">Telephone : <span><?php echo ucfirst($this->session->user->telephoneDemandeur)?></span></p>
+            <p class="blue-grey-text">Date de Naissance : <span><?php echo ucfirst($this->session->user->dateNaissance)?></span></p>
+            <p class="blue-grey-text">Genre : <span><?php echo ucfirst($this->session->user->genre)?></span></p>
+            <p class="blue-grey-text">Nationalite : <span><?php echo ucfirst($this->session->user->nationalite)?></span></p>
+            <p class="blue-grey-text">Etat civil : <span><?php echo ucfirst($this->session->user->etatCivil)?></span></p>
         </div>
         <div class="col s6 offset-s1">
             <div class="row">
                 <h5>Formation</h5>
                 <div class="divider"></div>
-                <p class="blue-grey-text">2018 :: Manager @ <span>SHIELD University</span></p>
+                <?php foreach ($formations as $formation) {?>
+                <p class="blue-grey-text"><?php echo $formation->dateDebutFormation;?>-<?php echo $formation->dateFinFormation;?> :: <?php echo ucfirst($formation->nomFormation);?> @ <span><?php echo ucfirst($formation->nomInstitution);?></span></p>
+                <?php }?>
                 <p class="">
                     <a class="modal-trigger btn-floating blue darken-1 right" href="#modal3"><i class="material-icons">add</i></a>
                 </p>
@@ -38,8 +40,9 @@
             <div class="row">
                 <h5>Competences</h5>
                 <div class="divider"></div>
-                <p class="blue-grey-text">Analyste Developper</p>
-                <p class="blue-grey-text">Modelisation</p>
+                <?php foreach ($competences as $competence) {?>
+                    <p class="blue-grey-text"><?php echo ucfirst($competence->nomCompetence);?></p>
+                <?php }?>
                 <p class="">
                     <a class="modal-trigger btn-floating blue darken-1 right" href="#modal1"><i class="material-icons">add</i></a>
                 </p>
@@ -47,8 +50,9 @@
             <div class="row">
                 <h5>Realisations</h5>
                 <div class="divider"></div>
-                <p class="blue-grey-text">2018 - MajiYetu @ www.majiyetu.group : description</p>
-                <p class="blue-grey-text">2019 - Sardes @ www.sardesdrc.com : description</p>
+                <?php foreach ($realisations as $realisation) {?>
+                    <p class="blue-grey-text"><?php echo ucfirst($realisation->dateRealisation);?> - <?php echo ucfirst($realisation->nomRealisation);?> @ <?php echo ucfirst($realisation->lienRealisation);?> : <?php echo ucfirst($realisation->descriptionRealisation);?></p>
+                <?php }?>
                 <p class="">
                     <a class="modal-trigger btn-floating blue darken-1 right" href="#modal2"><i class="material-icons">add</i></a>
                 </p>
@@ -56,13 +60,15 @@
             <div class="row">
                 <h5>Emplois</h5>
                 <div class="divider"></div>
-                <p class="blue-grey-text">2010-2018 :: CEO @ PBreakers</p>
+                <?php foreach ($emplois as $emploi) {?>
+                    <p class="blue-grey-text"><?php echo ucfirst($emploi->dateDebutEmplois);?>-<?php echo ucfirst($emploi->dateFinEmplois);?> :: <?php echo ucfirst($emploi->posteEmplois);?> @ <?php echo ucfirst($emploi->nomEntreprise);?></p>
+                <?php }?>
                 <p class="">
                     <a class="modal-trigger btn-floating blue darken-1 right" href="#modal4"><i class="material-icons">add</i></a>
                 </p>
             </div>
         </div>
-        <p><a class="waves-effect waves-light btn" href="<?php echo site_url('modif_uprofile')?>/1"><i class="material-icons right">edit</i>Modifier</a></p>
+        <p><a class="waves-effect waves-light btn" href="<?php echo site_url('modif_uprofile')?>/<?php echo $this->session->user->idDemandeur?>"><i class="material-icons right">edit</i>Modifier</a></p>
     </div>
 </div>
 
