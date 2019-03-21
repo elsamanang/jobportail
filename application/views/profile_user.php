@@ -80,7 +80,7 @@
             <?php echo form_open('addcompetences','class =""');?>
                 <div class="input-field col s6">
                     <i class="material-icons prefix">attach_file</i>
-                    <input id="icon_nom" type="text" class="validate">
+                    <input id="icon_nom" type="text" class="validate" name="nomCompetence">
                     <label for="icon_nom">Nom Competence</label>
                 </div>
                 <button class="btn waves-effect waves-light" type="submit" value="Ajouter">Ajouter
@@ -101,22 +101,22 @@
             <?php echo form_open('addrealisation','class =""');?>
                 <div class="input-field col s6">
                     <i class="material-icons prefix">attach_file</i>
-                    <input id="icon_name" type="text" class="validate">
+                    <input id="icon_name" type="text" class="validate" name="nomRealisation">
                     <label for="icon_name">Nom Realisation</label>
                 </div>
                 <div class="input-field col s6">
                     <i class="material-icons prefix">public</i>
-                    <input id="icon_link" type="text" class="validate">
+                    <input id="icon_link" type="text" class="validate" name="lienRealisation">
                     <label for="icon_link">Lien de la Realisation</label>
                 </div>
                 <div class="input-field col s6">
                     <i class="material-icons prefix">event</i>
-                    <input type="text" class="datepicker" placeholder="Date de la Realisation" id="dateRealisation">
+                    <input type="text" class="datepicker" placeholder="Date de la Realisation" id="dateRealisation" name="dateRealisation">
                     <label for="dateRealisation">Date de la Realisation</label>
                 </div>
                 <div class="input-field col s6">
                     <i class="material-icons prefix">edit</i>
-                    <textarea id="description" class="materialize-textarea"></textarea>
+                    <textarea id="description" name="descriptionRealisation" class="materialize-textarea"></textarea>
                     <label for="description">Description</label>
                 </div>
                 <button class="btn waves-effect waves-light" type="submit" value="Ajouter">Ajouter
@@ -137,40 +137,40 @@
             <?php echo form_open('addformation','class =""');?>
                 <div class="input-field col s6">
                     <i class="material-icons prefix">attach_file</i>
-                    <input id="iconname" type="text" class="validate">
+                    <input id="iconname" type="text" class="validate" name="nomFormation">
                     <label for="iconname">Nom Formation</label>
                 </div>
                 <div class="input-field col s6">
                     <i class="material-icons prefix">business</i>
-                    <input id="iconnamei" type="text" class="validate">
+                    <input id="iconnamei" type="text" class="validate" name="nomInstitution">
                     <label for="iconnamei">Nom Institution</label>
                 </div>
                 <div class="input-field col s6">
                     <i class="material-icons prefix">school</i>
-                    <input id="icon_diplome" type="text" class="validate">
+                    <input id="icon_diplome" type="text" class="validate" name="diplomeFormation">
                     <label for="icon_diplome">Diplome(domaine)</label>
                 </div>
                 <div class="input-field col s6">
                     <i class="material-icons prefix">school</i>
-                    <input id="icon_result" type="text" class="validate">
+                    <input id="icon_result" type="text" class="validate" name="resultatFormation">
                     <label for="icon_result">Resultat obtenu</label>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">event</i>
-                        <input type="text" class="datepicker" placeholder="Date de la Realisation" id="datedebut">
+                        <input type="text" class="datepicker" placeholder="Date de la Realisation" id="datedebut" name="dateDebutFormation">
                         <label for="datedebut">Date de Debut</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">event</i>
-                        <input type="text" class="datepicker" placeholder="Date de la Realisation" id="datefin">
+                        <input type="text" class="datepicker" placeholder="Date de la Realisation" id="datefin" name="dateFinFormation">
                         <label for="datefin">Date de Fin</label>
                     </div>
                 </div>
 
                 <div class="input-field col s6">
                     <i class="material-icons prefix">edit</i>
-                    <textarea id="descriptionf" class="materialize-textarea"></textarea>
+                    <textarea id="descriptionf" class="materialize-textarea" name="descriptionFormation"></textarea>
                     <label for="descriptionf">Description</label>
                 </div>
                 <button class="btn waves-effect waves-light" type="submit" value="Ajouter">Ajouter
@@ -191,23 +191,23 @@
             <?php echo form_open('addemplois','class =""');?>
                 <div class="input-field col s6">
                     <i class="material-icons prefix">attach_file</i>
-                    <input id="icon_post" type="text" class="validate">
+                    <input id="icon_post" type="text" class="validate" name="posteEmplois">
                     <label for="icon_post">Poste Emplois</label>
                 </div>
                 <div class="input-field col s6">
                     <i class="material-icons prefix">business</i>
-                    <input id="icon_entre" type="text" class="validate">
+                    <input id="icon_entre" type="text" class="validate" name="nomEntreprise">
                     <label for="icon_entre">Nom Entreprise</label>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">event</i>
-                        <input type="text" class="datepicker" placeholder="Date de la Realisation" id="date_debut">
+                        <input type="text" class="datepicker" placeholder="Date de Debut" id="date_debut" name="dateDebutEmplois">
                         <label for="date_debut">Date de Debut</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">event</i>
-                        <input type="text" class="datepicker" placeholder="Date de la Realisation" id="date_fin">
+                        <input type="text" class="datepicker" placeholder="Date de Fin" id="date_fin" name="dateFinEmplois">
                         <label for="date_fin">Date de Fin</label>
                     </div>
                 </div>
