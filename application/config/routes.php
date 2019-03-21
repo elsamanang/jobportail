@@ -71,6 +71,16 @@ $route['addcompetences'] = 'user/competences/create_action';
 $route['addemplois'] = 'user/emplois/create_action';
 $route['addformation'] = 'user/formation/create_action';
 
+$route['modif_uformation/(:any)'] = 'user/formation/update/$1';
+$route['modif_ucompetence/(:any)'] = 'user/competences/update/$1';
+$route['modif_urealisation/(:any)'] = 'user/realisation/update/$1';
+$route['modif_uemplois/(:any)'] = 'user/emplois/update/$1';
+
+$route['update_uformation'] = 'user/formation/update_action';
+$route['update_ucompetences'] = 'user/competences/update_action';
+$route['update_urealisation'] = 'user/realisation/update_action';
+$route['update_uemplois'] = 'user/emplois/update_action';
+
 $route['deconnexion'] = 'welcome/logout';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
