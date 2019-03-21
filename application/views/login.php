@@ -26,8 +26,15 @@
                                     Type :
                                     <label>
                                         Personne
-                                        <input type="checkbox" name="type">
-                                        <span class="lever"></span> Entreprise
+                                        <input type="checkbox" name="typePers" value="on">
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                                <div class="switch">
+                                    <label>
+                                        Entreprise
+                                        <input type="checkbox" name="typeEnt" value="on">
+                                        <span class="lever"></span>
                                     </label>
                                 </div>
                             </div>
