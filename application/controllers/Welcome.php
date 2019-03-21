@@ -22,16 +22,16 @@ class Welcome extends CI_Controller {
 		parent::__construct();
 	}
 	
-	public function index()
-	{
-		$data['title']= "accueil";
-		$this->load->view('_inc/header',$data);
-		$this->load->view('welcome_message');
-		$this->load->view('_inc/footer');
-	}
-	
 	public function login()
 	{
+		if($this->session->user){
+			if($this->session->type == 'user'){
+				redirect('accueil_user');
+			}
+			else {
+				redirect('accueil_entreprise');
+			}
+		}
 		$data['title']= "connexion";
 		$this->load->view('_inc/header',$data);
 		$this->load->view('login');
@@ -59,7 +59,8 @@ class Welcome extends CI_Controller {
 				if(!empty($user)){
 					if(sha1($pwd) == $user->pwd){
 						$data = array(
-							'user' => $user
+							'user' => $user,
+							'type' => 'user'
 						);
 						$this->session->set_userdata($data);
 						$this->session->set_flashdata('message', '<p style="color:green;"><i class="material-icons">check</i>Bienvenue '.$user->prenomDemandeur.'</p>');
