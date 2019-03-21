@@ -56,7 +56,7 @@ class Emplois extends CI_Controller
             $this->create();
         } else {
             $data = array(
-            'fk_idDemandeur' => $this->input->post('fk_idDemandeur',TRUE),
+            'fk_idDemandeur' => $this->session->user->idDemandeur,
             'nomEntreprise' => $this->input->post('nomEntreprise',TRUE),
             'posteEmplois' => $this->input->post('posteEmplois',TRUE),
             'dateDebutEmplois' => $this->input->post('dateDebutEmplois',TRUE),
@@ -65,17 +65,16 @@ class Emplois extends CI_Controller
             try{
                 $this->emplois_model->insert($data);
                 $this->session->set_flashdata('message', '<p style="color:green;">Create Record Success</p?>');
-                redirect(site_url('emplois/create'));
+                redirect('uprofile');
             }catch(Exception $e){
                 $this->session->set_flashdata('message', '<p style="color:red;">Create Record Failed >>'.$e.'</p>');
-                redirect(site_url('emplois/create'));
+                redirect('uprofile');
             }
         }
     }
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('fk_idDemandeur', 'fk iddemandeur', 'trim|required');
 	$this->form_validation->set_rules('nomEntreprise', 'nomentreprise', 'trim|required');
 	$this->form_validation->set_rules('posteEmplois', 'posteemplois', 'trim|required');
 	$this->form_validation->set_rules('dateDebutEmplois', 'datedebutemplois', 'trim|required');

@@ -56,15 +56,15 @@ class Competences extends CI_Controller
         } else {
             $data = array(
             'nomCompetence' => $this->input->post('nomCompetence',TRUE),
-            'fk_idDemandeur' => $this->input->post('fk_idDemandeur',TRUE),
+            'fk_idDemandeur' => $this->session->user->idDemandeur
             );
             try{
                 $this->competences_model->insert($data);
                 $this->session->set_flashdata('message', '<p style="color:green;">Create Record Success</p?>');
-                redirect(site_url('competences/create'));
+                redirect('uprofile');
             }catch(Exception $e){
                 $this->session->set_flashdata('message', '<p style="color:red;">Create Record Failed >>'.$e.'</p>');
-                redirect(site_url('competences/create'));
+                redirect('uprofile');
             }
         }
     }
@@ -72,8 +72,7 @@ class Competences extends CI_Controller
     public function _rules() 
     {
         $this->form_validation->set_rules('nomCompetence', 'Nom de competence', 'trim|required');
-        $this->form_validation->set_rules('fk_idDemandeur', 'fk_iddemandeur', 'trim|required');
 
-        $this->form_validation->set_error_delimiters('<span class="text-danger" style="color:red;">', '</span>');
+        $this->form_validation->set_error_delimiters('<span class="white-text center red" style="color:red;">', '</span>');
     }
 }

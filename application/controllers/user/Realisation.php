@@ -60,15 +60,15 @@ class Realisation extends CI_Controller
             'dateRealisation' => $this->input->post('dateRealisation',TRUE),
             'lienRealisation' => $this->input->post('lienRealisation',TRUE),
             'descriptionRealisation' => $this->input->post('descriptionRealisation',TRUE),
-            'fk_idDemandeur' => $this->input->post('fk_idDemandeur',TRUE),
+            'fk_idDemandeur' => $this->session->user->idDemandeur
             );
             try{
                 $this->realisation_model->insert($data);
                 $this->session->set_flashdata('message', '<p style="color:green;">Create Record Success</p?>');
-                redirect(site_url('realisation/create'));
+                redirect('uprofile');
             }catch(Exception $e){
                 $this->session->set_flashdata('message', '<p style="color:red;">Create Record Failed >>'.$e.'</p>');
-                redirect(site_url('realisation/create'));
+                redirect('uprofile');
             }
         }
     }
@@ -79,7 +79,6 @@ class Realisation extends CI_Controller
 	$this->form_validation->set_rules('dateRealisation', 'daterealisation', 'trim|required');
 	$this->form_validation->set_rules('lienRealisation', 'lienrealisation', 'trim|required');
 	$this->form_validation->set_rules('descriptionRealisation', 'descriptionrealisation', 'trim|required');
-	$this->form_validation->set_rules('fk_idDemandeur', 'fk iddemandeur', 'trim|required');
 
 	$this->form_validation->set_error_delimiters('<span class="text-danger" style="color:red;">', '</span>');
     }

@@ -63,15 +63,15 @@ class Formation extends CI_Controller
             'diplomeFormation' => $this->input->post('diplomeFormation',TRUE),
             'resultatFormation' => $this->input->post('resultatFormation',TRUE),
             'descriptionFormation' => $this->input->post('descriptionFormation',TRUE),
-            'fk_idDemandeur' => $this->input->post('fk_idDemandeur',TRUE),
+            'fk_idDemandeur' => $this->session->user->idDemandeur
             );
             try{
                 $this->formation_model->insert($data);
                 $this->session->set_flashdata('message', '<p style="color:green;">Create Record Success</p?>');
-                redirect(site_url('formation/create'));
+                redirect('uprofile');
             }catch(Exception $e){
                 $this->session->set_flashdata('message', '<p style="color:red;">Create Record Failed >>'.$e.'</p>');
-                redirect(site_url('formation/create'));
+                redirect('uprofile');
             }
         }
     }
@@ -85,7 +85,6 @@ class Formation extends CI_Controller
 	$this->form_validation->set_rules('diplomeFormation', 'diplomeformation', 'trim');
 	$this->form_validation->set_rules('resultatFormation', 'resultatformation', 'trim|numeric');
 	$this->form_validation->set_rules('descriptionFormation', 'descriptionformation', 'trim');
-	$this->form_validation->set_rules('fk_idDemandeur', 'fk iddemandeur', 'trim|required');
 
 	$this->form_validation->set_error_delimiters('<span class="text-danger" style="color:red;">', '</span>');
     }
