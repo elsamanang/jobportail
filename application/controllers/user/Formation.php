@@ -82,6 +82,34 @@ class Formation extends CI_Controller
         }
     }
 
+    public function update($id) 
+    {
+        $row = $this->formation_model->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('formation/update_action'),
+                'idFormation' => set_value('idFormation', $row->idFormation),
+                'nomFormation' => set_value('nomFormation', $row->nomFormation),
+                'nomInstitution' => set_value('nomInstitution', $row->nomInstitution),
+                'dateDebutFormation' => set_value('dateDebutFormation', $row->dateDebutFormation),
+                'dateFinFormation' => set_value('dateFinFormation', $row->dateFinFormation),
+                'diplomeFormation' => set_value('diplomeFormation', $row->diplomeFormation),
+                'resultatFormation' => set_value('resultatFormation', $row->resultatFormation),
+                'descriptionFormation' => set_value('descriptionFormation', $row->descriptionFormation),
+                'fk_idDemandeur' => set_value('fk_idDemandeur', $row->fk_idDemandeur),
+        );
+            $data['title'] ='modifier formation';
+            $this->load->view('_inc/header',$data);
+            $this->load->view('modif_formation');
+            $this->load->view('_inc/footer');
+        } else {
+            $this->session->set_flashdata('message', '<p style="color:orange;"><i class="material-icons">cancel</i> Record Not Found</p>');
+            redirect('uprofile');
+        }
+    }
+    
     public function _rules() 
     {
 	$this->form_validation->set_rules('nomFormation', 'nomformation', 'trim|required');
