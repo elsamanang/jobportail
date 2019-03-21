@@ -7,6 +7,12 @@ class Demandeur extends CI_Controller
 {
     public function __construct(){
         parent::__construct();
+        
+        //Session verification
+		if(!$this->session->user){
+			$this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Veuillez vous connecter</p>');
+			redirect('login');
+		}
     }
 
     public function index()
@@ -60,6 +66,7 @@ class Demandeur extends CI_Controller
             if(empty($verifEmail)){
                 if(empty($verifPseudo)){
                     if ($pwd == $pwdconf){
+                        $profile = NULL;
                         if($_FILES['imageProfile']['name'] != '')  
                             $profile = $this->upload_image();
                         $data = array(
@@ -175,8 +182,49 @@ class Demandeur extends CI_Controller
             $this->load->view('modif_uprofile');
             $this->load->view('_inc/footer');
         } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
+            $this->session->set_flashdata('message', '<p style="color:orange;"><i class="material-icons">cancel</i> Record Not Found</p>');
             redirect('uprofile');
+        }
+    }
+
+    public function update_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('message', '<p style="color:orange;"><i class="material-icons">cancel</i> Aucune modification faite!</p>');
+            $this->update($this->session->user->idDemandeur);
+        } else {      
+            $pwd = $this->input->post('pwd',TRUE);
+            $activePwd = $this->session->user->pwd;
+            if($activePwd != $pwd)
+                $pwd = sha1($pwd);
+            $profile = NULL;      
+            if($_FILES['imageProfile']['name'] != '')  
+                $profile = $this->upload_image();
+            $user = array(
+                'nomDemandeur' => $this->input->post('nomDemandeur',TRUE),
+                'prenomDemandeur' => $this->input->post('prenomDemandeur',TRUE),
+                'titre' => $this->input->post('titre',TRUE),
+                'adresseDemandeur' => $this->input->post('adresseDemandeur',TRUE),
+                'emailDemandeur' => $this->input->post('emailDemandeur',TRUE),
+                'telephoneDemandeur' => $this->input->post('telephoneDemandeur',TRUE),
+                'genre' => $this->input->post('genre',TRUE),
+                'dateNaissance' => $this->input->post('dateNaissance',TRUE),
+                'nationalite' => $this->input->post('nationalite',TRUE),
+                'etatCivil' => $this->input->post('etatCivil',TRUE),
+                'imageProfile' => $profile,
+                'pseudo' => $this->input->post('pseudo',TRUE),
+                'pwd' => $pwd,
+            );
+            try{
+                $this->demandeur_model->update($this->session->user->idDemandeur, $user);
+                $this->session->set_flashdata('message', '<p style="color:green;"><i class="material-icons">check</i> Update Record Success</p>');
+                redirect('uprofile');
+            }catch (Exception $e){
+                $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Update Record Failed >>'.$e.'</p>');
+                redirect('uprofile');
+            } 
         }
     }
 
