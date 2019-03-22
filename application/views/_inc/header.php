@@ -17,7 +17,7 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <?php
                     
-                    if(isset($this->session->user)){
+                    if(isset($this->session->user) || isset($this->session->entreprise)){
                 ?>
                     <li class="active">
                         <a href="
@@ -32,7 +32,7 @@
                     </li>
                 <?php }?>
                 <?php
-                    if(!isset($this->session->user)){
+                    if(!isset($this->session->user)&& !isset($this->session->entreprise)){
                 ?>
                     <li><a href="<?php echo site_url('login');?>">Login</a></li>
                     <li><a href="<?php echo site_url('inscription');?>">Inscription</a></li>
@@ -45,10 +45,31 @@
                             <?php 
                                 if($this->session->type == 'user')
                                     echo site_url('uprofile');
-                                else
-                                    echo site_url('uprofile');
                             ?>">
                             Profil
+                        </a>
+                    </li>
+                    <li><a href="<?php echo site_url('logout');?>">Deconnexion</a></li>
+                <?php }?>
+                <?php
+                    if(isset($this->session->entreprise)){
+                ?>
+                    <li>
+                        <a href="
+                            <?php 
+                                if($this->session->type == 'entreprise')
+                                    echo site_url('eprofile');
+                            ?>">
+                            Profil
+                        </a>
+                    </li>
+                    <li>
+                        <a href="
+                            <?php 
+                                if($this->session->type == 'entreprise')
+                                    echo site_url('offres');
+                            ?>">
+                            Mes Offres
                         </a>
                     </li>
                     <li><a href="<?php echo site_url('logout');?>">Deconnexion</a></li>
