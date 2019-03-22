@@ -118,8 +118,8 @@
                             <td><?php echo ucfirst($formation->diplomeFormation);?></td>
                             <td><?php echo ucfirst($formation->resultatFormation);?></td>
                             <td>
-                                <a class="btn-floating blue darken-1 center" href="<?php echo site_url('modif_uformation')?>/<?php echo $formation->idFormation?>"><i class="material-icons">edit</i></a>
-                                <a class="btn-floating red darken-1 center" href=""><i class="material-icons">delete_sweep</i></a>
+                                <a class="btn-floating blue darken-1 center tooltipped" data-position="left" data-tooltip="Modifier" href="<?php echo site_url('modif_uformation')?>/<?php echo $formation->idFormation?>"><i class="material-icons">edit</i></a>
+                                <a class="btn-floating red darken-1 center tooltipped" data-position="left" data-tooltip="Supprimer" href=""><i class="material-icons">delete_sweep</i></a>
                             </td>
                         </tr>
                         <?php }?>
@@ -147,8 +147,8 @@
                         <tr>
                             <td><?php echo ucfirst($competence->nomCompetence);?></td>
                             <td>
-                                <a class="btn-floating blue darken-1 center" href="<?php echo site_url('modif_ucompetence')?>/<?php echo $competence->idCompetences?>"><i class="material-icons">edit</i></a>
-                                <a class="btn-floating red darken-1 center" href=""><i class="material-icons">delete_sweep</i></a>
+                                <a class="btn-floating blue darken-1 center tooltipped" data-position="left" data-tooltip="Modifier" href="<?php echo site_url('modif_ucompetence')?>/<?php echo $competence->idCompetences?>"><i class="material-icons">edit</i></a>
+                                <a class="btn-floating red darken-1 center tooltipped" data-position="left" data-tooltip="Supprimer" href=""><i class="material-icons">delete_sweep</i></a>
                             </td>
                         </tr>
                         <?php }?>
@@ -182,8 +182,8 @@
                             <td><?php echo ucfirst($realisation->dateRealisation);?></td>
                             <td><?php echo ucfirst($realisation->descriptionRealisation);?></td>
                             <td>
-                                <a class="btn-floating blue darken-1 center" href="<?php echo site_url('modif_urealisation')?>/<?php echo $realisation->idRealisation?>"><i class="material-icons">edit</i></a>
-                                <a class="btn-floating red darken-1 center" href=""><i class="material-icons">delete_sweep</i></a>
+                                <a class="btn-floating blue darken-1 center tooltipped" data-position="left" data-tooltip="Modifier" href="<?php echo site_url('modif_urealisation')?>/<?php echo $realisation->idRealisation?>"><i class="material-icons">edit</i></a>
+                                <a class="btn-floating red darken-1 center tooltipped" data-position="left" data-tooltip="Supprimer" href=""><i class="material-icons">delete_sweep</i></a>
                             </td>
                         </tr>
                         <?php }?>
@@ -215,8 +215,8 @@
                             <td><?php echo ucfirst($emploi->nomEntreprise);?></td>
                             <td><?php echo ucfirst($emploi->dateDebutEmplois);?>-<?php echo ucfirst($emploi->dateFinEmplois);?></td>
                             <td>
-                                <a class="btn-floating blue darken-1 center" href="<?php echo site_url('modif_uemplois')?>/<?php echo $emploi->idEmplois?>"><i class="material-icons">edit</i></a>
-                                <a class="btn-floating red darken-1 center" href=""><i class="material-icons">delete_sweep</i></a>
+                                <a class="btn-floating blue darken-1 center tooltipped" data-position="left" data-tooltip="Modifier" href="<?php echo site_url('modif_uemplois')?>/<?php echo $emploi->idEmplois?>"><i class="material-icons">edit</i></a>
+                                <a class="btn-floating red darken-1 center tooltipped" data-position="left" data-tooltip="Supprimer" href=""><i class="material-icons">delete_sweep</i></a>
                             </td>
                         </tr>
                         <?php }?>
