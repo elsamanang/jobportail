@@ -66,7 +66,7 @@
                                     <input type="file" name="imageProfile">
                                 </div>
                                 <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="Image de Profile" name="imageProfile">
+                                    <input class="file-path validate" type="text" placeholder="Image de Profile" name="imageProfile" value="<?php echo $this->session->user->imageProfile?>">
                                 </div>
                             </div>
                             <div class="input-field col s6">
