@@ -87,7 +87,7 @@ class Formation extends CI_Controller
         $row = $this->formation_model->get_by_id($id);
 
         if ($row) {
-            $data = array(
+            $data['formation'] = array(
                 'idFormation' => set_value('idFormation', $row->idFormation),
                 'nomFormation' => set_value('nomFormation', $row->nomFormation),
                 'nomInstitution' => set_value('nomInstitution', $row->nomInstitution),
@@ -104,6 +104,30 @@ class Formation extends CI_Controller
             $this->load->view('_inc/footer');
         } else {
             $this->session->set_flashdata('message', '<p style="color:orange;"><i class="material-icons">cancel</i> Record Not Found</p>');
+            redirect('uprofile');
+        }
+    }
+
+    public function update_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('idFormation', TRUE));
+        } else {
+            $data = array(
+                'nomFormation' => $this->input->post('nomFormation',TRUE),
+                'nomInstitution' => $this->input->post('nomInstitution',TRUE),
+                'dateDebutFormation' => $this->input->post('dateDebutFormation',TRUE),
+                'dateFinFormation' => $this->input->post('dateFinFormation',TRUE),
+                'diplomeFormation' => $this->input->post('diplomeFormation',TRUE),
+                'resultatFormation' => $this->input->post('resultatFormation',TRUE),
+                'descriptionFormation' => $this->input->post('descriptionFormation',TRUE),
+                'fk_idDemandeur' => $this->session->user->idDemandeur,
+            );
+
+            $this->formation_model->update($this->input->post('idFormation', TRUE), $data);
+            $this->session->set_flashdata('message', '<p style="color:green;">Update Record Success</p?>');
             redirect('uprofile');
         }
     }
