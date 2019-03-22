@@ -51,21 +51,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome/login';
 $route['accueil_user'] = 'user/welcome';
-$route['accueil_entreprise'] = 'entrerise/welcome';
+$route['accueil_entreprise'] = 'entreprise/welcome';
 $route['login'] = 'welcome/login';
 $route['logout'] = 'welcome/logout';
 $route['log'] = 'welcome/login_action';
 $route['logupPersonne'] = 'user/demandeur/create_action';
-$route['logupEntreprise'] = 'entrerise/employeur/create_action';
+$route['logupEntreprise'] = 'entreprise/employeur/create_action';
 $route['inscription'] = 'welcome/inscription';
 $route['uprofile'] = 'user/demandeur/profile';
 $route['modif_uprofile/(:any)'] = 'user/demandeur/update/$1';
 $route['update_uprofile'] = 'user/demandeur/update_action';
-$route['eprofile'] = 'entrerise/employeur/profile';
+$route['eprofile'] = 'entreprise/employeur/profile';
 
-$route['list_offre'] = 'entrerise/offre';
-$route['add_offre'] = 'entrerise/offre/create';
-$route['addoffre'] = 'entrerise/offre/create_action';
+$route['offres'] = 'entreprise/offre';
+$route['add_offre'] = 'entreprise/offre/create';
+$route['addoffre'] = 'entreprise/offre/create_action';
 $route['addrealisation'] = 'user/realisation/create_action';
 $route['addcompetences'] = 'user/competences/create_action';
 $route['addemplois'] = 'user/emplois/create_action';
@@ -80,6 +80,7 @@ $route['update_uformation'] = 'user/formation/update_action';
 $route['update_ucompetences'] = 'user/competences/update_action';
 $route['update_urealisation'] = 'user/realisation/update_action';
 $route['update_uemplois'] = 'user/emplois/update_action';
+
 
 $route['deconnexion'] = 'welcome/logout';
 $route['404_override'] = '';
