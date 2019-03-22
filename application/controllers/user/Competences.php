@@ -79,7 +79,8 @@ class Competences extends CI_Controller
         $row = $this->competences_model->get_by_id($id);
 
         if ($row) {
-            $data = array(
+            $data['competence'] = array(
+                'idCompetences' => set_value('idCompetences', $row->idCompetences),
                 'nomCompetence' => set_value('nomCompetence', $row->nomCompetence),
                 'fk_idDemandeur' => set_value('fk_idDemandeur', $row->fk_idDemandeur),
             );
@@ -89,6 +90,24 @@ class Competences extends CI_Controller
             $this->load->view('_inc/footer');
         } else {
             $this->session->set_flashdata('message', '<p style="color:orange;"><i class="material-icons">cancel</i> Record Not Found</p>');
+            redirect('uprofile');
+        }
+    }
+
+    public function update_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('idCompetences', TRUE));
+        } else {
+            $data = array(
+                'nomCompetence' => $this->input->post('nomCompetence',TRUE),
+                'fk_idDemandeur' => $this->session->user->idDemandeur,
+            );
+
+            $this->competences_model->update($this->input->post('idCompetences', TRUE), $data);
+            $this->session->set_flashdata('message', '<p style="color:green;">Update Record Success</p?>');
             redirect('uprofile');
         }
     }
