@@ -1,9 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/* 
- * Pagination Config Bootstrap 3 CSS Style
- */
-
 $config['query_string_segment'] = 'start';
 
 $config['full_tag_open'] = '<nav><ul class="pagination" style="margin-top:0px">';
