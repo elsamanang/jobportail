@@ -55,7 +55,7 @@
                                 <input type="file" name="logo">
                             </div>
                             <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text" placeholder="Image de Profile" value="<?php echo $this->session->entreprise->logo?>">
+                                <input class="file-path validate" type="text" placeholder="Image de Profile" name="logo" value="<?php echo $this->session->entreprise->logo?>">
                             </div>
                             <?php echo form_error('logo') ?>
                         </div>

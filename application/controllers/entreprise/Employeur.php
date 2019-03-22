@@ -170,6 +170,57 @@ class Employeur extends CI_Controller
             redirect('eprofile');
         }
     }
+
+    public function update_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('message', '<p style="color:orange;"><i class="material-icons">cancel</i> Aucune modification faite!</p>');
+            $this->update($this->session->entreprise->idEmployeur);
+        } else {
+            $pwd = $this->input->post('pwd',TRUE);
+            $activePwd = $this->session->entreprise->pwd;
+            if($activePwd != $pwd)
+                $pwd = sha1($pwd);
+            $profile = $this->input->post('logo',TRUE);     
+            if($_FILES['logo']['name'] != '')  
+                $profile = $this->upload_image();
+
+            $entreprise = array(
+                'nomEmployeur' => $this->input->post('nomEmployeur',TRUE),
+                'adresseEmployeur' => $this->input->post('adresseEmployeur',TRUE),
+                'emailEmployeur' => $this->input->post('emailEmployeur',TRUE),
+                'telephoneEmployeur' => $this->input->post('telephoneEmployeur',TRUE),
+                'siteEmployeur' => $this->input->post('siteEmployeur',TRUE),
+                'codePostal' => $this->input->post('codePostal',TRUE),
+                'fax' => $this->input->post('fax',TRUE),
+                'logo' => $profile,
+                'pseudo' => $this->input->post('pseudo',TRUE),
+                'pwd' => $pwd,
+            );
+            try {
+                $this->employeur_model->update($this->session->entreprise->idEmployeur, $entreprise);
+                // redifined session values
+                $this->session->entreprise->nomEmployeur = $entreprise['nomEmployeur'];
+                $this->session->entreprise->adresseEmployeur = $entreprise['adresseEmployeur'];
+                $this->session->entreprise->emailEmployeur = $entreprise['emailEmployeur'];
+                $this->session->entreprise->telephoneEmployeur = $entreprise['telephoneEmployeur'];
+                $this->session->entreprise->siteEmployeur = $entreprise['siteEmployeur'];
+                $this->session->entreprise->codePostal = $entreprise['codePostal'];
+                $this->session->entreprise->fax = $entreprise['fax'];
+                $this->session->entreprise->logo = $entreprise['logo'];
+                $this->session->entreprise->pseudo = $entreprise['pseudo'];
+                $this->session->entreprise->pwd = $entreprise['pwd'];
+
+                $this->session->set_flashdata('message', '<p style="color:green;"><i class="material-icons">check</i> Update Record Success</p>');
+                redirect('eprofile');
+            } catch (Exception $e) {
+                $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Update Record Failed >>'.$e.'</p>');
+                redirect('eprofile');
+            }
+        }
+    }
     
     public function _rules() {
         $this->form_validation->set_rules('nomEmployeur', 'nomemployeur', 'trim|required');
@@ -179,6 +230,7 @@ class Employeur extends CI_Controller
         $this->form_validation->set_rules('siteEmployeur', 'siteemployeur', 'trim');
         $this->form_validation->set_rules('codePostal', 'codepostal', 'trim');
         $this->form_validation->set_rules('fax', 'fax', 'trim');
+        $this->form_validation->set_rules('logo', 'logo', 'trim');
         $this->form_validation->set_rules('pseudo', 'pseudo', 'trim');
         $this->form_validation->set_rules('pwd', 'pwd', 'trim|required');
         $this->form_validation->set_rules('pwdconf', 'pwdConfirmation', 'trim|required');
