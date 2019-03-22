@@ -1,4 +1,4 @@
-<footer class="page-footer blue-grey" style="position:absolute; width:100%;bottom:0;">
+<footer class="page-footer blue-grey">
     <div class="footer-copyright center">
         <div class="container">
             © <?php echo Date('Y');?> Designed By
