@@ -199,32 +199,47 @@ class Demandeur extends CI_Controller
             $activePwd = $this->session->user->pwd;
             if($activePwd != $pwd)
                 $pwd = sha1($pwd);
-            $profile = NULL;      
+            $profile = $this->input->post('imageProfile',TRUE);      
             if($_FILES['imageProfile']['name'] != '')  
                 $profile = $this->upload_image();
-            $user = array(
-                'nomDemandeur' => $this->input->post('nomDemandeur',TRUE),
-                'prenomDemandeur' => $this->input->post('prenomDemandeur',TRUE),
-                'titre' => $this->input->post('titre',TRUE),
-                'adresseDemandeur' => $this->input->post('adresseDemandeur',TRUE),
-                'emailDemandeur' => $this->input->post('emailDemandeur',TRUE),
-                'telephoneDemandeur' => $this->input->post('telephoneDemandeur',TRUE),
-                'genre' => $this->input->post('genre',TRUE),
-                'dateNaissance' => $this->input->post('dateNaissance',TRUE),
-                'nationalite' => $this->input->post('nationalite',TRUE),
-                'etatCivil' => $this->input->post('etatCivil',TRUE),
-                'imageProfile' => $profile,
-                'pseudo' => $this->input->post('pseudo',TRUE),
-                'pwd' => $pwd,
-            );
-            try{
-                $this->demandeur_model->update($this->session->user->idDemandeur, $user);
-                $this->session->set_flashdata('message', '<p style="color:green;"><i class="material-icons">check</i> Update Record Success</p>');
-                redirect('uprofile');
-            }catch (Exception $e){
-                $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Update Record Failed >>'.$e.'</p>');
-                redirect('uprofile');
-            } 
+                $user = array(
+                    'nomDemandeur' => $this->input->post('nomDemandeur',TRUE),
+                    'prenomDemandeur' => $this->input->post('prenomDemandeur',TRUE),
+                    'titre' => $this->input->post('titre',TRUE),
+                    'adresseDemandeur' => $this->input->post('adresseDemandeur',TRUE),
+                    'emailDemandeur' => $this->input->post('emailDemandeur',TRUE),
+                    'telephoneDemandeur' => $this->input->post('telephoneDemandeur',TRUE),
+                    'genre' => $this->input->post('genre',TRUE),
+                    'dateNaissance' => $this->input->post('dateNaissance',TRUE),
+                    'nationalite' => $this->input->post('nationalite',TRUE),
+                    'etatCivil' => $this->input->post('etatCivil',TRUE),
+                    'imageProfile' => $profile,
+                    'pseudo' => $this->input->post('pseudo',TRUE),
+                    'pwd' => $pwd,
+                );
+                try{
+                    $this->demandeur_model->update($this->session->user->idDemandeur, $user);
+                    // redifined session values
+                    $this->session->user->nomDemandeur = $user['nomDemandeur'];
+                    $this->session->user->prenomDemandeur = $user['prenomDemandeur'];
+                    $this->session->user->titre = $user['titre'];
+                    $this->session->user->adresseDemandeur = $user['adresseDemandeur'];
+                    $this->session->user->emailDemandeur = $user['emailDemandeur'];
+                    $this->session->user->telephoneDemandeur = $user['telephoneDemandeur'];
+                    $this->session->user->genre = $user['genre'];
+                    $this->session->user->dateNaissance = $user['dateNaissance'];
+                    $this->session->user->nationalite = $user['nationalite'];
+                    $this->session->user->etatCivil = $user['etatCivil'];
+                    $this->session->user->imageProfile = $user['imageProfile'];
+                    $this->session->user->pseudo = $user['pseudo'];
+                    $this->session->user->pwd = $user['pwd'];
+
+                    $this->session->set_flashdata('message', '<p style="color:green;"><i class="material-icons">check</i> Update Record Success</p>');
+                    redirect('uprofile');
+                }catch (Exception $e){
+                    $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Update Record Failed >>'.$e.'</p>');
+                    redirect('uprofile');
+                } 
         }
     }
 
@@ -233,7 +248,7 @@ class Demandeur extends CI_Controller
         $this->form_validation->set_rules('prenomDemandeur', 'prenomdemandeur', 'trim|required');
         $this->form_validation->set_rules('titre', 'titre', 'trim|required');
         $this->form_validation->set_rules('adresseDemandeur', 'adressedemandeur', 'trim|required');
-        $this->form_validation->set_rules('emailDemandeur', 'emaildemandeur', 'trim|required');
+        $this->form_validation->set_rules('emailDemandeur', 'emaildemandeur', 'trim|valid_email|required');
         $this->form_validation->set_rules('telephoneDemandeur', 'telephonedemandeur', 'trim|required');
         $this->form_validation->set_rules('genre', 'genre', 'trim|required');
         $this->form_validation->set_rules('dateNaissance', 'datenaissance', 'trim|required');
