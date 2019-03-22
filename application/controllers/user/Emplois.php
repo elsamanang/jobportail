@@ -84,7 +84,7 @@ class Emplois extends CI_Controller
         $row = $this->emplois_model->get_by_id($id);
 
         if ($row) {
-            $data = array(
+            $data['emploi'] = array(
                 'idEmplois' => set_value('idEmplois', $row->idEmplois),
                 'fk_idDemandeur' => set_value('fk_idDemandeur', $row->fk_idDemandeur),
                 'nomEntreprise' => set_value('nomEntreprise', $row->nomEntreprise),
@@ -98,6 +98,27 @@ class Emplois extends CI_Controller
             $this->load->view('_inc/footer');
         } else {
             $this->session->set_flashdata('message', '<p style="color:orange;"><i class="material-icons">cancel</i> Record Not Found</p>');
+            redirect('uprofile');
+        }
+    }
+
+    public function update_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('idEmplois', TRUE));
+        } else {
+            $data = array(
+                'fk_idDemandeur' => $this->session->user->idDemandeur,
+                'nomEntreprise' => $this->input->post('nomEntreprise',TRUE),
+                'posteEmplois' => $this->input->post('posteEmplois',TRUE),
+                'dateDebutEmplois' => $this->input->post('dateDebutEmplois',TRUE),
+                'dateFinEmplois' => ($this->input->post('dateFinEmplois',TRUE) == '') ? NULL : $this->input->post('dateFinEmplois',TRUE),
+            );
+
+            $this->emplois_model->update($this->input->post('idEmplois', TRUE), $data);
+            $this->session->set_flashdata('message', '<p style="color:green;">Update Record Success</p?>');
             redirect('uprofile');
         }
     }
