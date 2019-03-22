@@ -35,8 +35,19 @@ class Offre_model extends CI_Model
 	$this->db->or_like('posteOffre', $q);
 	$this->db->or_like('dateDebutOffre', $q);
 	$this->db->or_like('dateFinOffre', $q);
-	$this->db->or_like('fk_idEmployeur', $q);
+    $this->db->or_like('fk_idEmployeur', $q);
+    
 	$this->db->from($this->table);
+        return $this->db->count_all_results();
+    }
+    
+    // get total rows by id_employeur
+    function total_rows_id($q = NULL,$idEmp) {
+        
+	    $this->db->like('posteOffre', $q);
+    
+        $this->db->from($this->table);
+        $this->db->where('fk_idEmployeur', $idEmp);
         return $this->db->count_all_results();
     }
 
@@ -49,6 +60,16 @@ class Offre_model extends CI_Model
         $this->db->or_like('dateFinOffre', $q);
         $this->db->or_like('fk_idEmployeur', $q);
         $this->db->join('employeur', 'offre.fk_idEmployeur = employeur.idEmployeur');
+        $this->db->limit($limit, $start);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get data with limit and search by id
+    function get_limit_data_id($limit, $start = 0, $q = NULL,$idEmp) {
+        $this->db->where('fk_idEmployeur', $idEmp);
+        $this->db->order_by($this->id, $this->order);
+        $this->db->like('posteOffre', $q);
+
         $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
