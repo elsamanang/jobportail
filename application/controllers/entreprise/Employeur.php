@@ -7,6 +7,12 @@ class Employeur extends CI_Controller
 {
     public function __construct(){
         parent::__construct();
+
+        //Session verification
+		if(!$this->session->entreprise){
+			$this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Veuillez vous connecter</p>');
+			redirect('login');
+		}
     }
 
     public function index()
@@ -135,6 +141,34 @@ class Employeur extends CI_Controller
 		$this->load->view('_inc/header',$data);
 		$this->load->view('profile_entreprise');
 		$this->load->view('_inc/footer');
+    }
+
+    public function update($id) 
+    {
+        $row = $this->employeur_model->get_by_id($id);
+
+        if ($row) {
+            $data['entreprise'] = array(
+                'idEmployeur' => set_value('idEmployeur', $row->idEmployeur),
+                'nomEmployeur' => set_value('nomEmployeur', $row->nomEmployeur),
+                'adresseEmployeur' => set_value('adresseEmployeur', $row->adresseEmployeur),
+                'emailEmployeur' => set_value('emailEmployeur', $row->emailEmployeur),
+                'telephoneEmployeur' => set_value('telephoneEmployeur', $row->telephoneEmployeur),
+                'siteEmployeur' => set_value('siteEmployeur', $row->siteEmployeur),
+                'codePostal' => set_value('codePostal', $row->codePostal),
+                'fax' => set_value('fax', $row->fax),
+                'logo' => set_value('logo', $row->logo),
+                'pseudo' => set_value('pseudo', $row->pseudo),
+                'pwd' => set_value('pwd', $row->pwd),
+            );
+            $data['title'] ='modifier profile';
+            $this->load->view('_inc/header',$data);
+            $this->load->view('modif_eprofile', $data);
+            $this->load->view('_inc/footer');
+        } else {
+            $this->session->set_flashdata('message', '<p style="color:orange;"><i class="material-icons">cancel</i> Record Not Found</p>');
+            redirect('eprofile');
+        }
     }
     
     public function _rules() {
