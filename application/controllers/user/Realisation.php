@@ -84,7 +84,7 @@ class Realisation extends CI_Controller
         $row = $this->realisation_model->get_by_id($id);
 
         if ($row) {
-            $data = array(
+            $data['realisation'] = array(
                 'idRealisation' => set_value('idRealisation', $row->idRealisation),
                 'nomRealisation' => set_value('nomRealisation', $row->nomRealisation),
                 'dateRealisation' => set_value('dateRealisation', $row->dateRealisation),
@@ -102,12 +102,33 @@ class Realisation extends CI_Controller
         }
     }
 
+    public function update_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('idRealisation', TRUE));
+        } else {
+            $data = array(
+                'nomRealisation' => $this->input->post('nomRealisation',TRUE),
+                'dateRealisation' => $this->input->post('dateRealisation',TRUE),
+                'lienRealisation' => $this->input->post('lienRealisation',TRUE),
+                'descriptionRealisation' => $this->input->post('descriptionRealisation',TRUE),
+                'fk_idDemandeur' => $this->session->user->idDemandeur,
+            );
+
+            $this->realisation_model->update($this->input->post('idRealisation', TRUE), $data);
+            $this->session->set_flashdata('message', '<p style="color:green;">Update Record Success</p?>');
+            redirect('uprofile');
+        }
+    }
+
     public function _rules() 
     {
 	$this->form_validation->set_rules('nomRealisation', 'nomrealisation', 'trim|required');
 	$this->form_validation->set_rules('dateRealisation', 'daterealisation', 'trim|required');
 	$this->form_validation->set_rules('lienRealisation', 'lienrealisation', 'trim|required');
-	$this->form_validation->set_rules('descriptionRealisation', 'descriptionrealisation', 'trim|required');
+	$this->form_validation->set_rules('descriptionRealisation', 'descriptionrealisation', 'trim');
 
 	$this->form_validation->set_error_delimiters('<span class="text-danger" style="color:red;">', '</span>');
     }
