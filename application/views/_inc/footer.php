@@ -22,6 +22,9 @@
             format: "yyyy-mm-dd"
         };
         var instances = M.Datepicker.init(elems, options);
+
+        var elems = document.querySelectorAll('.tooltipped');
+        var instances = M.Tooltip.init(elems, options);
     });
 </script>
 <!-- Pour l'affiche du Toast de message -->
