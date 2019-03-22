@@ -22,17 +22,17 @@ class Offre extends CI_Controller
         $start = intval($this->input->get('start'));
         
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'offre/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'offre/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url('offres') . '?q=' . urlencode($q);
+            $config['first_url'] = base_url('offres') . '?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'offre/index.html';
-            $config['first_url'] = base_url() . 'offre/index.html';
+            $config['base_url'] = base_url('offres');
+            $config['first_url'] = base_url('offres');
         }
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->offre_model->total_rows($q);
-        $offre = $this->offre_model->get_limit_data($config['per_page'], $start, $q);
+        $config['total_rows'] = $this->offre_model->total_rows_id($q,$this->session->entreprise->idEmployeur);
+        $offre = $this->offre_model->get_limit_data_id($config['per_page'], $start, $q,$this->session->entreprise->idEmployeur);
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
