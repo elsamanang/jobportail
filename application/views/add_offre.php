@@ -6,18 +6,18 @@
                 <?php echo form_open('addoffre','class =""');?>
                     <div class="input-field col s10 offset-s1">
                         <i class="material-icons prefix">attach_file</i>
-                        <input id="icon_post" type="text" class="validate">
+                        <input id="icon_post" type="text" class="validate" name="posteOffre">
                         <label for="icon_post">Poste Offre</label>
                     </div>
                     <div class="row">
                         <div class="input-field col s5 offset-s1">
                             <i class="material-icons prefix">event</i>
-                            <input type="text" class="datepicker" placeholder="Date de la Realisation" id="date_debut">
+                            <input type="text" class="datepicker" placeholder="Date de la Realisation" id="date_debut" name="dateDebutOffre">
                             <label for="date_debut">Date de Debut</label>
                         </div>
                         <div class="input-field col s5 offset-s1">
                             <i class="material-icons prefix">event</i>
-                            <input type="text" class="datepicker" placeholder="Date de la Realisation" id="date_fin">
+                            <input type="text" class="datepicker" placeholder="Date de la Realisation" id="date_fin" name="dateFinOffre">
                             <label for="date_fin">Date de Fin</label>
                         </div>
                     </div>

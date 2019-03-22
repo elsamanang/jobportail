@@ -69,15 +69,15 @@ class Offre extends CI_Controller
             'posteOffre' => $this->input->post('posteOffre',TRUE),
             'dateDebutOffre' => $this->input->post('dateDebutOffre',TRUE),
             'dateFinOffre' => $this->input->post('dateFinOffre',TRUE),
-            'fk_idEmployeur' => $this->input->post('fk_idEmployeur',TRUE),
+            'fk_idEmployeur' => $this->session->entreprise->idEmployeur,
             );
             try{
                 $this->offre_model->insert($data);
                 $this->session->set_flashdata('message', '<p style="color:green;">Create Record Success</p?>');
-                redirect(site_url('offre/create'));
+                redirect('offres');
             }catch(Exception $e){
                 $this->session->set_flashdata('message', '<p style="color:red;">Create Record Failed >>'.$e.'</p>');
-                redirect(site_url('offre/create'));
+                redirect('offres');
             }
         }
     }
@@ -87,7 +87,6 @@ class Offre extends CI_Controller
 	$this->form_validation->set_rules('posteOffre', 'posteoffre', 'trim|required');
 	$this->form_validation->set_rules('dateDebutOffre', 'datedebutoffre', 'trim|required');
 	$this->form_validation->set_rules('dateFinOffre', 'datefinoffre', 'trim|required');
-	$this->form_validation->set_rules('fk_idEmployeur', 'fk idemployeur', 'trim|required');
 
 	$this->form_validation->set_error_delimiters('<span class="text-danger" style="color:red;">', '</span>');
     }
