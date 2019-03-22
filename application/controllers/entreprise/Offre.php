@@ -8,6 +8,12 @@ class Offre extends CI_Controller
     function __construct()
     {
         parent::__construct();
+
+        //Session verification
+		if(!$this->session->entreprise){
+			$this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Veuillez vous connecter</p>');
+			redirect('login');
+		}
     }
 
     public function index()
