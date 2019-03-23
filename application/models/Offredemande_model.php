@@ -28,6 +28,15 @@ class Offredemande_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    // get data by id
+    function get_by_id_ent($id)
+    {
+        $this->db->where('offre.fk_idEmployeur', $id);
+        $this->db->join('offre', 'offre.idOffre = offredemande.fk_idoffre');
+        $this->db->join('demandeur', 'demandeur.idDemandeur = offredemande.fk_idDemandeur');
+        return $this->db->get($this->table)->result();
+    }
     
     // get total rows
     function total_rows($q = NULL) {
