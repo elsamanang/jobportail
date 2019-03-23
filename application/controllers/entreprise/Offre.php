@@ -83,6 +83,40 @@ class Offre extends CI_Controller
         }
     }
 
+    public function accepter($offre) 
+    {
+        if (empty($offre)) {
+            $this->session->set_flashdata('message', '<p style="color:orange;"><i class="material-icons">cancel</i> Action non Realisée</p>');
+            $this->index();
+        } else {
+            try{
+                $this->offredemande_model->validation($offre);
+                $this->session->set_flashdata('message', '<p style="color:green;"><i class="material-icons">check</i> Action Success</p>');
+                redirect('offres');
+            }catch (Exception $e){
+                $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Action Record Failed >>'.$e.'</p>');
+                redirect('offres');
+            }
+        }
+    }
+
+    public function refuser($offre) 
+    {
+        if (empty($offre)) {
+            $this->session->set_flashdata('message', '<p style="color:orange;"><i class="material-icons">cancel</i> Action non Realisée</p>');
+            $this->index();
+        } else {
+            try{
+                $this->offredemande_model->refus($offre);
+                $this->session->set_flashdata('message', '<p style="color:green;"><i class="material-icons">check</i> Action Success</p>');
+                redirect('offres');
+            }catch (Exception $e){
+                $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Action Record Failed >>'.$e.'</p>');
+                redirect('offres');
+            }
+        }
+    }
+
     public function _rules() 
     {
 	$this->form_validation->set_rules('posteOffre', 'posteoffre', 'trim|required');
