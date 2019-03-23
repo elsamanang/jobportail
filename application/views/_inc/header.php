@@ -49,6 +49,7 @@
                             Profil
                         </a>
                     </li>
+                    <li><a href="<?php echo site_url('postulations');?>">Postulations</a></li>
                     <li><a href="<?php echo site_url('logout');?>">Deconnexion</a></li>
                 <?php }?>
                 <?php
