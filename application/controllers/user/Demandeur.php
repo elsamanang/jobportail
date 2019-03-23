@@ -265,6 +265,41 @@ class Demandeur extends CI_Controller
         }
     }
 
+    public function postulations(){
+
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        
+        if ($q <> '') {
+            $config['base_url'] = base_url('postulations') . '?q=' . urlencode($q);
+            $config['first_url'] = base_url('postulations') . '?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url('postulations');
+            $config['first_url'] = base_url('postulations');
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->offredemande_model->total_rows_dem($q,$this->session->user->idDemandeur);
+        $offredemande = $this->offredemande_model->get_by_id_dem($this->session->user->idDemandeur,$config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
+        $data = array(
+            'offredemande_data' => $offredemande,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+        );
+        $data['title']= "Postulations";
+        // $data['postulations'] = $this->offredemande_model->get_by_id_dem($this->session->user->idDemandeur);
+		$this->load->view('_inc/header',$data);
+		$this->load->view('list_postulation');
+		$this->load->view('_inc/footer');
+    }
+
     public function _rules() {
         $this->form_validation->set_rules('nomDemandeur', 'nomdemandeur', 'trim|required');
         $this->form_validation->set_rules('prenomDemandeur', 'prenomdemandeur', 'trim|required');
