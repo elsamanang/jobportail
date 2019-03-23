@@ -51,6 +51,9 @@ $route['addformation'] = 'user/formation/create_action';
 $route['modif_uformation/(:any)'] = 'user/formation/update/$1';
 $route['update_uformation'] = 'user/formation/update_action';
 
+
+//Postuler
+$route['postuler/(:any)'] = 'user/demandeur/postuler/$1';
 //Reserved(errors,...)
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

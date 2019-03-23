@@ -243,6 +243,28 @@ class Demandeur extends CI_Controller
         }
     }
 
+    public function postuler($offre) 
+    {
+        if (empty($offre)) {
+            $this->session->set_flashdata('message', '<p style="color:orange;"><i class="material-icons">cancel</i> Action non Realisée</p>');
+            $this->index();
+        } else {
+            $data = array(
+                'fk_idOffre' => $offre,
+                'fk_idDemandeur' => $this->session->user->idDemandeur,
+                'dateSoumission' => date("Y-m-d H:i:s"),
+            );
+            try{
+                $this->offredemande_model->insert($data);
+                $this->session->set_flashdata('message', '<p style="color:green;"><i class="material-icons">check</i> Action Success</p>');
+                redirect('accueil_user');
+            }catch (Exception $e){
+                $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Action Record Failed >>'.$e.'</p>');
+                redirect('accueil_user');
+            }
+        }
+    }
+
     public function _rules() {
         $this->form_validation->set_rules('nomDemandeur', 'nomdemandeur', 'trim|required');
         $this->form_validation->set_rules('prenomDemandeur', 'prenomdemandeur', 'trim|required');

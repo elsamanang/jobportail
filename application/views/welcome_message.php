@@ -35,7 +35,7 @@
                         <p><strong class="blue-grey-text">Depuis</strong> : <?php echo $offre->dateDebutOffre ?>.</p>
                         <p><strong class="blue-grey-text">Expire</strong> : <?php echo $offre->dateFinOffre ?>.</p>
                         <div class="card-action">
-                            <a class="waves-effect waves-light btn" href=""><i class="material-icons right">directions_run</i>Postuler</a>
+                            <a class="waves-effect waves-light btn" href="<?php echo site_url('postuler')?>/<?php echo $offre->idOffre ?>"><i class="material-icons right">directions_run</i>Postuler</a>
                         </div>
                     </div>
                 </div>

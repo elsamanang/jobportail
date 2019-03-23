@@ -25,15 +25,14 @@
                                         foreach ($demandeOffres as $demandeOffre)
                                         {
                                             if($demandeOffre->fk_idOffre == $offre->idOffre){
-                                                $nb++; echo $nb;
+                                                $nb++;
                                             }
-                                        }
+                                        } echo $nb;
                                     ?>)</span>
                                 </h5>
                                 <table class="responsive-table striped highlight">
                                     <thead>
                                         <tr>
-                                            <th>No.</th>
                                             <th>Noms</th>
                                             <th>Adresse</th>
                                             <th>Email</th>
@@ -47,13 +46,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $j=0;
+                                        <?php
                                             foreach ($demandeOffres as $demandeOffre)
-                                            {$j++;
+                                            {
                                                 if($demandeOffre->fk_idOffre == $offre->idOffre){
                                         ?>
                                         <tr>
-                                            <td><?php echo $j; ?></td>
                                             <td><?php echo ucfirst($demandeOffre->nomDemandeur) ?> <?php echo ucfirst($demandeOffre->prenomDemandeur) ?></td>
                                             <td><?php echo ucfirst($demandeOffre->adresseDemandeur) ?></td>
                                             <td><?php echo $demandeOffre->emailDemandeur ?></td>
