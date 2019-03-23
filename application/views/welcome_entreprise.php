@@ -1,18 +1,18 @@
 <div class="row">
-        <div class="col s8 offset-s2">
-            <form class="col s12">
-                <div class="input-field col s10">
-                    <i class="material-icons prefix">search</i>
-                    <input id="icon_search" type="search" class="search" name="q" value="<?php echo $q; ?>">
-                    <label for="icon_search">Chercher</label>
-                </div>
-                <div class="input-field col s2">
-                    <input id="icon_btn" type="submit" class="btn waves-light search" value="Chercher">
-                </div>
-            </form>
-        </div>
+    <div class="col s8 offset-s2">
+        <form class="col s12">
+            <div class="input-field col s10">
+                <i class="material-icons prefix">search</i>
+                <input id="icon_search" type="search" class="search" name="q" value="<?php echo $q; ?>">
+                <label for="icon_search">Chercher</label>
+            </div>
+            <div class="input-field col s2">
+                <input id="icon_btn" type="submit" class="btn waves-light search" value="Chercher">
+            </div>
+        </form>
     </div>
-    <div class="divider"></div>
+</div>
+    <!-- <div class="divider"></div> -->
     <div class="row">
         <?php
             foreach ($demandeur_data as $demandeur)
@@ -49,10 +49,11 @@
     </div>
 
     <div class="row">
-            <div class="col-md-6">
-                <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-            </div>
-            <div class="col-md-6 text-right">
-                <?php echo $pagination ?>
-            </div>
+        <div class="col-md-6">
+            <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
         </div>
+        <div class="col-md-6 text-right">
+            <?php echo $pagination ?>
+        </div>
+    </div><br><br>
+        
