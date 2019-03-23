@@ -44,6 +44,7 @@ class Offre extends CI_Controller
             'total_rows' => $config['total_rows'],
             'start' => $start,
         );
+        $data['demandeOffres']=  $this->offredemande_model->get_by_id_ent($this->session->entreprise->idEmployeur);
         $data['title']= "Liste des Offres";
         $this->load->view('_inc/header',$data);
         $this->load->view('list_offre');
