@@ -103,6 +103,22 @@ class Offredemande_model extends CI_Model
         $this->db->where($this->id, $id);
         $this->db->update($this->table, $data);
     }
+    
+    //accepter demande
+    function validation($id)
+    {
+        $this->db->where('fk_idOffre', $id);
+        $this->db->set('reponse', 1);
+        $this->db->update($this->table);
+    }
+    //refuser demande
+    function refus($id)
+    {
+        $this->db->where('fk_idOffre', $id);
+        $this->db->set('reponse', 0);
+        $this->db->update($this->table);
+    }
+    
 
     // delete data
     function delete($id)
