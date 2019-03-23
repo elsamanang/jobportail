@@ -1,4 +1,3 @@
-<?php var_dump($offre_data); ?>
 <h4 class="center blue-grey-text"><?php echo ucfirst($title);?></h4>
 <div class="row">
     <div class="col s12 m12">
@@ -21,7 +20,16 @@
                                 <div class="col s3"><?php echo $offre->dateFinOffre ?></div>
                             </div>
                             <div class="collapsible-body">
-                                <h5><span>Postulants(1)</span></h5>
+                                <h5><span>Postulants(
+                                    <?php $nb=0;
+                                        foreach ($demandeOffres as $demandeOffre)
+                                        {
+                                            if($demandeOffre->fk_idOffre == $offre->idOffre){
+                                                $nb++; echo $nb;
+                                            }
+                                        }
+                                    ?>)</span>
+                                </h5>
                                 <table class="responsive-table striped highlight">
                                     <thead>
                                         <tr>
@@ -39,19 +47,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $j=0;
+                                            foreach ($demandeOffres as $demandeOffre)
+                                            {$j++;
+                                                if($demandeOffre->fk_idOffre == $offre->idOffre){
+                                        ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Tubongye Roland Beni</td>
-                                            <td>rubi</td>
-                                            <td>roland.beni1@gmail.com</td>
-                                            <td>+243991551044</td>
-                                            <td>M</td>
-                                            <td>Congolaise</td>
-                                            <td>Celibataire</td>
-                                            <td>03/08/1900</td>
-                                            <td>12/03/2019</td>
+                                            <td><?php echo $j; ?></td>
+                                            <td><?php echo ucfirst($demandeOffre->nomDemandeur) ?> <?php echo ucfirst($demandeOffre->prenomDemandeur) ?></td>
+                                            <td><?php echo ucfirst($demandeOffre->adresseDemandeur) ?></td>
+                                            <td><?php echo $demandeOffre->emailDemandeur ?></td>
+                                            <td><?php echo $demandeOffre->telephoneDemandeur ?></td>
+                                            <td><?php echo ucfirst($demandeOffre->genre) ?></td>
+                                            <td><?php echo ucfirst($demandeOffre->nationalite) ?></td>
+                                            <td><?php echo ucfirst($demandeOffre->etatCivil) ?></td>
+                                            <td><?php echo ucfirst($demandeOffre->dateNaissance) ?></td>
+                                            <td><?php echo ucfirst($demandeOffre->dateSoumission) ?></td>
                                             <td><a class="waves-effect waves-light btn right" href="#"><i class="material-icons left">phone</i>Call</a></td>
                                         </tr>
+                                            <?php  }}?>
                                     </tbody>
                                 </table>
                             </div>
