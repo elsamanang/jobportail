@@ -29,7 +29,7 @@ class Offredemande_model extends CI_Model
         return $this->db->get($this->table)->row();
     }
 
-    // get data by id
+    // get data by id entreprise
     function get_by_id_ent($id)
     {
         $this->db->where('offre.fk_idEmployeur', $id);
@@ -37,14 +37,46 @@ class Offredemande_model extends CI_Model
         $this->db->join('demandeur', 'demandeur.idDemandeur = offredemande.fk_idDemandeur');
         return $this->db->get($this->table)->result();
     }
+    // get data by id demandeur
+    function get_by_id_dem($id,$limit, $start = 0, $q = NULL)
+    {
+        $this->db->where('offredemande.fk_idDemandeur', $id);
+        $this->db->order_by($this->id, $this->order);
+        $this->db->like('idoffredemande', $q);
+        $this->db->or_like('fk_idOffre', $q);
+        $this->db->or_like('fk_idDemandeur', $q);
+        $this->db->or_like('offre.posteOffre', $q);
+        $this->db->or_like('employeur.nomEmployeur', $q);
+        $this->db->or_like('dateSoumission', $q);
+        $this->db->join('offre', 'offre.idOffre = offredemande.fk_idoffre');
+        $this->db->join('employeur', 'employeur.idEmployeur = offre.fk_idEmployeur');
+        $this->db->limit($limit, $start);
+        return $this->db->get($this->table)->result();
+    }
+    
+    // get total rows
+    function total_rows_dem($q = NULL,$id) {
+        $this->db->where('offredemande.fk_idDemandeur', $id);
+        $this->db->like('idoffredemande', $q);
+        $this->db->or_like('fk_idOffre', $q);
+        $this->db->or_like('fk_idDemandeur', $q);
+        $this->db->or_like('offre.posteOffre', $q);
+        $this->db->or_like('employeur.nomEmployeur', $q);
+        $this->db->or_like('dateSoumission', $q);
+     
+        $this->db->join('offre', 'offre.idOffre = offredemande.fk_idoffre');
+        $this->db->join('employeur', 'employeur.idEmployeur = offre.fk_idEmployeur');
+        $this->db->from($this->table);
+        return $this->db->count_all_results();
+    }
     
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('idoffredemande', $q);
-	$this->db->or_like('fk_idOffre', $q);
-	$this->db->or_like('fk_idDemandeur', $q);
-	$this->db->or_like('dateSoumission', $q);
-	$this->db->from($this->table);
+        $this->db->or_like('fk_idOffre', $q);
+        $this->db->or_like('fk_idDemandeur', $q);
+        $this->db->or_like('dateSoumission', $q);
+        $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
@@ -52,10 +84,10 @@ class Offredemande_model extends CI_Model
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
         $this->db->like('idoffredemande', $q);
-	$this->db->or_like('fk_idOffre', $q);
-	$this->db->or_like('fk_idDemandeur', $q);
-	$this->db->or_like('dateSoumission', $q);
-	$this->db->limit($limit, $start);
+        $this->db->or_like('fk_idOffre', $q);
+        $this->db->or_like('fk_idDemandeur', $q);
+        $this->db->or_like('dateSoumission', $q);
+        $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 
