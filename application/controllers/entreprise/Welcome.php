@@ -30,6 +30,32 @@ class Welcome extends CI_Controller {
 	
 	public function index()
 	{
+		$q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'demandeur/index.php?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'demandeur/index.php?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'demandeur/index.php';
+            $config['first_url'] = base_url() . 'demandeur/index.php';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->demandeur_model->total_rows($q);
+        $demandeur = $this->demandeur_model->get_limit_data($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
+        $data = array(
+            'demandeur_data' => $demandeur,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+        );
 
 		$data['title']= "accueil";
 		$this->load->view('_inc/header',$data);
