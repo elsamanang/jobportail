@@ -61,7 +61,10 @@
                                             <td><?php echo ucfirst($demandeOffre->etatCivil) ?></td>
                                             <td><?php echo ucfirst($demandeOffre->dateNaissance) ?></td>
                                             <td><?php echo ucfirst($demandeOffre->dateSoumission) ?></td>
-                                            <td><a class="waves-effect waves-light btn right" href="#"><i class="material-icons left">phone</i>Call</a></td>
+                                            <td>
+                                                <a class="btn-floating waves-effect waves-light btn green darken-1 center tooltipped" data-tooltip="Accept" href="<?php echo base_url('accepter')?>/<?php echo $offre->idOffre?>"><i class="material-icons left">check</i>Accept</a>
+                                                <a class="btn-floating waves-effect waves-light btn red darken-1 center tooltipped"  data-tooltip="Refuse" href="<?php echo base_url('refuser')?>/<?php echo $offre->idOffre?>"><i class="material-icons left">clear</i>Refuse</a>
+                                            </td>
                                         </tr>
                                             <?php  }}?>
                                     </tbody>
