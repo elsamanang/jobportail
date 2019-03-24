@@ -1,70 +1,60 @@
 ###################
-What is CodeIgniter
+    JobPortal ?
 ###################
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+JobPortal est un projet qui suggérer une meilleure solution pour accélérer et faciliter le recrutement,
+un portail de l'emploi destiné aux employeurs, aux demandeurs d'emploi et aux recruteurs.
+
+Pour les employeurs qui cherchent à recruter les candidats les plus qualifiés, le projet offre une 
+technologie moderne et des services supérieurs pour simplifier le processus de recrutement : 
+recherche des candidats, filtrage des compétences…
+
+JobPortal est la meilleure façon de changer de carrière ou de trouver les bonnes 
+personnes pour les postes et ce, très facilement.
 
 *******************
-Release Information
+    Employeur
 *******************
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+L'employeur ici est une entreprise ayant un compte JobPortal.
 
-**************************
-Changelog and New Features
-**************************
+    ***Accueil
+        Apres connexion, sur la page d'accueil lui est presenté un ensemble des candidats(Demandeurs) ayant un 
+        compte JobPortal avec une possibilité de les contactés.
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+    ***Profil
+        Une large possibilité de consulter son profile et de pouvoir le modifier a sa guise
+
+    ***Mes Offres
+        Il peux ajouter une offre a l'intention des tous;
+        et il peux lister l'ensemble des offres qu'il a posté et voir les candidats(demandeurs)
+        ayant postuler à cette offre-> ainsi pouvoir valider ou refuser un candidats.
+==>Pour acceder a l'application, il suffit:
+    a) de creer un compte entreprise dans l'option "Inscription" et acceder aux fonctionnaliter
+    b) d'utiliser le compte existance(de test) se trouvant dans la database
+        ->email: pbreakers@gmail.com
+        ->password: 123456
 
 *******************
-Server Requirements
+    Demandeur
 *******************
 
-PHP version 5.6 or newer is recommended.
+L'employeur ici est une entreprise ayant un compte JobPortal.
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+    ***Accueil
+        Apres connexion, sur la page d'accueil lui est presenté un ensemble d'offres postées 
+        par les entreprises(Employeur) ayant un compte JobPortal avec une possibilité de postuler.
 
-************
-Installation
-************
+    ***Profil
+        Une large possibilité de consulter son profile et de pouvoir le modifier a sa guise;
+        Aussi la possibilité d'y ajouter ses Formations, Compétences, Réalisations et Emplois.
+        Ainsi l'ensemble de ces chose constitut son CV personnel qu'il peux imprimer.
 
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
-
-*******
-License
-*******
-
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
-
-*********
-Resources
-*********
-
--  `User Guide <https://codeigniter.com/docs>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
-
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
-
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+    ***Postulations
+        Ici sont listés l'ensemble d'offres auquels le user a postuler et les 
+        reponses liées à chacune d'elles(En attente de reponse, Demande Rejetée et Validée)
+==>Pour acceder a l'application, il suffit:
+    a) de creer un compte personne(demandeur) dans l'option "Inscription" et acceder aux fonctionnaliter
+    b) d'utiliser le compte existance(de test) se trouvant dans la database
+        ->email: roland.beni1@gmail.com
+        ->password: 123456
