@@ -140,81 +140,51 @@ class Admin extends CI_Controller {
 	
 	public function login()
 	{
-		// if($this->session->user || $this->session->entreprise){
-		// 	if($this->session->type == 'user'){
-		// 		redirect('accueil_user');
-		// 	}
-		// 	else if($this->session->type == 'entreprise') {
-		// 		redirect('accueil_entreprise');
-		// 	}else{
-		// 		$this->logout();
-		// 	}
-		// }
+		if($this->session->admin){
+			redirect('accueil_admin');
+		}
 		$data['title']= "connexion admin";
-		$this->load->view('_inc/header_admin',$data);
+		$this->load->view('_inc/header',$data);
 		$this->load->view('admin/login');
-		// $this->load->view('_inc/footer');
+		$this->load->view('_inc/footer');
 	}
 
 	public function login_action(){
 		$this->_rules();
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Remplissez les champs obligatoires</p>');
-            redirect('login');
+            redirect('admin');
         } else {
             $pwd = $this->input->post('pwd');
-            $email = $this->input->post('email',TRUE);
-			$typePers = $this->input->post('typePers',TRUE);
-			$typeEnt = $this->input->post('typeEnt',TRUE);
-			
-			if($typePers != NULL && $typeEnt != NULL){
-				$this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Veuillez Choisir un seul type</p>');
-                redirect('login');
-			}
-			
-			if ($typePers != NULL) {
-				$user = $this->demandeur_model->get_by_email($email);
-				if(!empty($user)){
-					if(sha1($pwd) == $user->pwd){
-						$data = array(
-							'user' => $user,
-							'type' => 'user'
-						);
-						$this->session->set_userdata($data);
-						$this->session->set_flashdata('message', '<p style="color:green;"><i class="material-icons">check</i>Bienvenue '.ucfirst($user->prenomDemandeur).'</p>');
-						redirect('accueil_user');
-					}
-					$this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Email or Password Incorrect</p>');
-                	redirect('login');
-				}else{
-					$this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Email or Password Incorrect</p>');
-                	redirect('login');
-				}
-				
-			}else if($typeEnt != NULL) {
-				$entreprise = $this->employeur_model->get_by_email($email);
-				if(!empty($entreprise)){
-					if(sha1($pwd) == $entreprise->pwd){
-						
-						$data = array(
-							'entreprise' => $entreprise,
-							'type' => 'entreprise'
-						);
-						$this->session->set_userdata($data);
-						$this->session->set_flashdata('message', '<p style="color:green;"><i class="material-icons">check</i>Bienvenue</p>');
-						redirect('accueil_entreprise');
-					}
-					$this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Email or Password Incorrect</p>');
-                	redirect('login');
-				}else{
-					$this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Email or Password Incorrect</p>');
-                	redirect('login');
-				}
-			}else{
-                $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Il est important de preciser le type!</p>');
-                redirect('login');
+            $pseudo = $this->input->post('pseudo',TRUE);
+            $admin = array(
+                "pseudo"=> "admin",
+                "pwd" => "admin",
+                "email" => "admin@gmail.com"
+            );
+            if($admin['pseudo'] == $pseudo){
+                if($pwd == $admin['pwd']){
+                    $data = array(
+                        'admin' => $admin,
+                        'type' => 'admin'
+                    );
+                    $this->session->set_userdata($data);
+                    $this->session->set_flashdata('message', '<p style="color:green;"><i class="material-icons">check</i>Bienvenue '.ucfirst($admin['pseudo']).'</p>');
+                    redirect('accueil_admin');
+                }
+                $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Email or Password Incorrect</p>');
+                redirect('admin');
+            }else{
+                $this->session->set_flashdata('message', '<p style="color:red;"><i class="material-icons">cancel</i> Email or Password Incorrect</p>');
+                redirect('admin');
             }
-              
         }
-}
+    }
+    public function _rules() 
+    {
+        $this->form_validation->set_rules('pseudo', 'Pseudo obligatoire', 'trim|required');
+		$this->form_validation->set_rules('pwd', 'Password Obligatoire', 'trim|required');
+
+        $this->form_validation->set_error_delimiters('<span class="white-text center red" style="color:red;">', '</span>');
+    }
 }
