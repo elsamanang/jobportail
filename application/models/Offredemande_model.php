@@ -75,7 +75,12 @@ class Offredemande_model extends CI_Model
         $this->db->like('idoffredemande', $q);
         $this->db->or_like('fk_idOffre', $q);
         $this->db->or_like('fk_idDemandeur', $q);
+        $this->db->or_like('offre.posteOffre', $q);
+        $this->db->or_like('employeur.nomEmployeur', $q);
         $this->db->or_like('dateSoumission', $q);
+
+        $this->db->join('offre', 'offre.idOffre = offredemande.fk_idoffre');
+        $this->db->join('employeur', 'employeur.idEmployeur = offre.fk_idEmployeur');
         $this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -86,7 +91,13 @@ class Offredemande_model extends CI_Model
         $this->db->like('idoffredemande', $q);
         $this->db->or_like('fk_idOffre', $q);
         $this->db->or_like('fk_idDemandeur', $q);
+        $this->db->or_like('offre.posteOffre', $q);
+        $this->db->or_like('employeur.nomEmployeur', $q);
         $this->db->or_like('dateSoumission', $q);
+        
+        $this->db->join('offre', 'offre.idOffre = offredemande.fk_idoffre');
+        $this->db->join('employeur', 'employeur.idEmployeur = offre.fk_idEmployeur');
+        $this->db->join('demandeur', 'demandeur.idDemandeur = offredemande.fk_idDemandeur');
         $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
