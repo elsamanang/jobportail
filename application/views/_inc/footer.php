@@ -25,6 +25,10 @@
 
         var elems = document.querySelectorAll('.tooltipped');
         var instances = M.Tooltip.init(elems, options);
+
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
+  });
     });
 </script>
 <!-- Pour l'affiche du Toast de message -->
