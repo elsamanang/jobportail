@@ -57,6 +57,15 @@ $route['postuler/(:any)'] = 'user/demandeur/postuler/$1';
 $route['postulations'] = 'user/demandeur/postulations';
 $route['accepter/(:any)'] = 'entreprise/offre/accepter/$1';
 $route['refuser/(:any)'] = 'entreprise/offre/refuser/$1';
+
+//Admin
+$route['admin'] = 'Admin/login';
+$route['admin_log'] = 'Admin/login_action';
+$route['accueil_admin'] = 'Admin';
+$route['liste_demandeurs'] = 'Admin';
+$route['liste_employeurs'] = 'Admin/listEmployeur';
+$route['liste_offres'] = 'Admin/listOffres';
+$route['liste_postulations'] = 'Admin/listPostulations';
 //Reserved(errors,...)
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
