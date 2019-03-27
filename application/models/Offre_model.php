@@ -58,7 +58,8 @@ class Offre_model extends CI_Model
         $this->db->or_like('posteOffre', $q);
         $this->db->or_like('dateDebutOffre', $q);
         $this->db->or_like('dateFinOffre', $q);
-        $this->db->or_like('fk_idEmployeur', $q);
+        $this->db->or_like('dateFinOffre', $q);
+        $this->db->or_like('employeur.nomEmployeur', $q);
         $this->db->join('employeur', 'offre.fk_idEmployeur = employeur.idEmployeur');
         $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
