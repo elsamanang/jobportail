@@ -18,8 +18,8 @@
                     <img src="<?php echo base_url();?>assets/none.jpg" alt="User" srcset="" class="circle" style="width:50px; height:50px">
                 </div>
                 <div class="row white-text text-darken-3">
-                    <p>Admin</p>
-                    <p style="font-size:0.8em; margin-top:-6%;">admin@gmail.com</p>
+                    <p><?php echo ucfirst($this->session->admin['pseudo']);?></p>
+                    <p style="font-size:0.8em; margin-top:-6%;"><?php echo ucfirst($this->session->admin['email']);?></p>
                 </div>
             </div>
             <div class="row">
