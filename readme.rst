@@ -58,3 +58,15 @@ L'employeur ici est une entreprise ayant un compte JobPortal.
     b) d'utiliser le compte existance(de test) se trouvant dans la database
         ->email: roland.beni1@gmail.com
         ->password: 123456
+
+*******************
+    ADMIN
+*******************
+
+L'Admin ici est celui qui a acces a toutes les infos des demandeurs ainsi que des Entreprises(employeurs).
+
+==>Pour acceder a la partie admin, il suffit:
+    a) faire localhost/jobportail/admin;
+    b) d'utiliser le compte existance(de test) se trouvant dans le controller de l'application
+        ->pseudo: admin
+        ->password: admin
