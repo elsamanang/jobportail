@@ -9,7 +9,7 @@
                                 echo $img;?>">
                 </div>
             </div>
-            <p><a class="waves-effect waves-light btn" href=""><i class="material-icons right">print</i>Imprimer CV</a></p>
+            <p><a class="waves-effect waves-light btn" href="" onclick="printCv()"><i class="material-icons right">print</i>Imprimer CV</a></p>
         </div>
     </div>
     <div class="col s8 card">
@@ -223,3 +223,8 @@
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
     </div>
 </div>
+<script>
+    function printCv(){
+        window.print();
+    }
+</script>
