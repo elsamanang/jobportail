@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 24 Mars 2019 à 19:29
+-- Généré le :  Jeu 28 Mars 2019 à 19:35
 -- Version du serveur :  10.1.21-MariaDB
 -- Version de PHP :  7.1.1
 
@@ -203,7 +203,7 @@ CREATE TABLE `offredemande` (
 --
 
 INSERT INTO `offredemande` (`idoffredemande`, `fk_idOffre`, `fk_idDemandeur`, `dateSoumission`, `reponse`) VALUES
-(1, 3, 1, '2019-03-23 19:05:03', 0);
+(1, 3, 1, '2019-03-23 19:05:03', NULL);
 
 -- --------------------------------------------------------
 
