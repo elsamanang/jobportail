@@ -28,7 +28,6 @@
 
         var elems = document.querySelectorAll('.sidenav');
         var instances = M.Sidenav.init(elems);
-  });
     });
 </script>
 <!-- Pour l'affiche du Toast de message -->
