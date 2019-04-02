@@ -30,7 +30,7 @@
                                     <span class="lever"></span>
                                 </label>
                             </div>
-                            <div class="switch">
+                            <div class="switch" style="margin-left : 38px;">
                                 <label>
                                     Entreprise
                                     <input type="checkbox" name="typeEnt" value="on">
