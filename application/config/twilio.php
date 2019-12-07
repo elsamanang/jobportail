@@ -21,7 +21,7 @@ $config['api_version'] = '2010-04-01';
 /**
  * Twilio Phone Number
  **/
-$config['number'] = 'Your configuration no that you have need to set in twilio dashboard is used to send recive message';
+$config['number'] = '+243991551044';
 
 /* End of file twilio.php */
 ?>
