@@ -6,12 +6,12 @@ $config['mode'] = 'sandbox';
 /**
  * Account SID
  **/
-$config['account_sid'] = 'ACce861a23c03b99ebaaa3652e99123be3';
+$config['account_sid'] = 'AC34e2f2a7a33199b27a75a30cf54e1dc4';
 
 /**
  * Auth Token
  **/
-$config['auth_token'] = '30a9936807760efa1887c1f8ed0e9111';
+$config['auth_token'] = '692e7488150d44f987a77cb79976673f';
 
 /**
  * API Version
@@ -21,7 +21,7 @@ $config['api_version'] = '2010-04-01';
 /**
  * Twilio Phone Number
  **/
-$config['number'] = 'Your configuration no that you have need to set in twilio dashboard is used to send recive message';
+$config['number'] = '+12562853071';
 
 /* End of file twilio.php */
 ?>
