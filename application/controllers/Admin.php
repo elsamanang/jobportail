@@ -187,4 +187,15 @@ class Admin extends CI_Controller {
 
         $this->form_validation->set_error_delimiters('<span class="white-text center red" style="color:red;">', '</span>');
     }
+
+	public function smsVue()
+	{
+		if($this->session->admin){
+			redirect('accueil_admin');
+		}
+		$data['title']= "sms admin";
+		$this->load->view('_inc/header',$data);
+		$this->load->view('admin/sms');
+		$this->load->view('_inc/footer');
+    }
 }
