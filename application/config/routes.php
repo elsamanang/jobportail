@@ -60,6 +60,8 @@ $route['refuser/(:any)'] = 'entreprise/offre/refuser/$1';
 
 //Admin
 $route['admin'] = 'Admin/login';
+$route['sms'] = 'Admin/smsVue';
+$route['send_sms'] = 'SmsC/sendSms';
 $route['admin_log'] = 'Admin/login_action';
 $route['accueil_admin'] = 'Admin';
 $route['liste_demandeurs'] = 'Admin';
